@@ -235,9 +235,6 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
                     
-                    <!-- NAV LOGO: Replace src with your image URL (40×40px recommended) -->
-                    <img src="YOUR_LOGO_URL_HERE" alt="TFNE Logo" class="w-10 h-10 rounded-full border border-gray-600 object-cover shadow-[0_0_10px_rgba(255,232,31,0.25)]">
-
                     <span class="font-scifi font-bold text-xl tracking-wider text-white hidden sm:block">TALES FROM A NEW ERA <span class="text-xs text-red-500 ml-1 pulse-border border border-red-700 px-1 rounded">18+</span></span>
                     <span class="font-scifi font-bold text-base tracking-wider text-white sm:hidden">TFNE <span class="text-xs text-red-500 ml-1">18+</span></span>
                 </div>
@@ -295,22 +292,22 @@
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_50%,rgba(139,0,0,0.18),transparent)] z-0"></div>
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_80%_50%,rgba(0,91,159,0.18),transparent)] z-0"></div>
                 
-                <div class="relative z-20 text-center px-4 max-w-5xl mx-auto mt-10 fade-in">
+                <div class="relative z-20 text-center px-4 max-w-5xl mx-auto mt-6 sm:mt-10 fade-in">
                     <div class="inline-block px-5 py-1.5 border border-red-500/60 bg-red-900/20 text-red-400 font-scifi tracking-[0.25em] text-xs uppercase mb-7 rounded-full backdrop-blur-sm pulse-border">
                         ⦿ &nbsp; Current Year: 17 ABY &nbsp; ⦿
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-scifi font-black text-white tracking-wider mb-4 uppercase drop-shadow-2xl leading-tight">
+                    <h1 class="text-3xl sm:text-5xl md:text-7xl font-scifi font-black text-white tracking-wider mb-4 uppercase drop-shadow-2xl leading-tight">
                         The Galaxy <br/><span class="text-shimmer">Holds Its Breath</span>
                     </h1>
-                    <p class="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                    <p class="mt-4 text-base sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
                         A brutal Cold War ravages the stars. The sluggish New Republic re-arms in desperation, while the meritocratic Galactic Imperium prepares its final strike.
                     </p>
-                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                         <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
-                        <a href="https://discord.gg/your-invite-link" target="_blank" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:shadow-[0_0_25px_rgba(79,70,229,0.7)] flex items-center justify-center gap-3 text-lg">
-                            <i class="fab fa-discord text-2xl"></i> Join the Server
+                        <a href="https://discord.gg/your-invite-link" target="_blank" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:shadow-[0_0_25px_rgba(79,70,229,0.7)] flex items-center justify-center gap-3 text-base sm:text-lg">
+                            <i class="fab fa-discord text-xl sm:text-2xl"></i> Join the Server
                         </a>
-                        <button onclick="navigate('timeline')" class="px-8 py-4 bg-transparent border border-gray-500/70 hover:border-starwars text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:bg-starwars/10 hover:text-starwars text-lg">
+                        <button onclick="navigate('timeline')" class="w-full sm:w-auto px-6 py-3 bg-transparent border border-gray-500/70 hover:border-starwars text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:bg-starwars/10 hover:text-starwars text-base sm:text-lg">
                             Explore Timeline
                         </button>
                     </div>
@@ -318,11 +315,11 @@
             </div>
 
             <!-- Backstory Summary -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
                     <div>
                         <h2 class="text-3xl font-scifi font-bold mb-6 text-starwars border-b border-gray-700 pb-2 uppercase tracking-widest">The State of the Galaxy</h2>
-                        <div class="space-y-4 text-gray-300 leading-relaxed text-lg">
+                        <div class="space-y-4 text-gray-300 leading-relaxed text-base md:text-lg">
                             <p>
                                 Everything before the Battle of Endor remains as you know it. But the deaths of the Rebel Strike Team on Endor changed the trajectory of the galaxy forever.
                             </p>
@@ -369,8 +366,8 @@
         <!-- ==================== TIMELINE PAGE ==================== -->
         <div id="page-timeline" class="page-section hidden w-full py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div class="text-center mb-16 fade-in">
-                <h1 class="text-4xl md:text-5xl font-scifi font-black text-white tracking-widest uppercase mb-4">Historical Archives</h1>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">The definitive record of events following the Battle of Endor up to the current Cold War in 17 ABY. <span class="text-starwars font-semibold">Legends continuity applies to pre-Clone Wars lore.</span></p>
+                <h1 class="text-3xl md:text-5xl font-scifi font-black text-white tracking-widest uppercase mb-4">Historical Archives</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">The definitive record of events following the Battle of Endor up to the current Cold War in 17 ABY. <span class="text-starwars font-semibold">Legends continuity applies to pre-Clone Wars lore.</span></p>
             </div>
 
             <div class="relative timeline-line">
@@ -382,7 +379,7 @@
                     </div>
                     <div class="order-2 md:order-3 md:w-5/12 w-full pl-20 md:pl-0 mt-8 md:mt-0">
                         <div class="bg-gray-900/80 border border-gray-700 p-6 rounded-lg shadow-lg hover:border-gray-500 transition-colors">
-                            <h3 class="text-2xl font-scifi font-bold text-white mb-2">The Ultimate Sacrifice at Endor</h3>
+                            <h3 class="text-xl sm:text-2xl font-scifi font-bold text-white mb-2">The Ultimate Sacrifice at Endor</h3>
                             <p class="text-gray-300 text-sm mb-4">A strike team led by Leia Organa, Han Solo, and Chewbacca lands on Endor. Overwhelmed by stormtroopers despite Ewok assistance, and corralled into the bunker, the heroes make the ultimate sacrifice, detonating the shield generator with themselves inside. The Rebel fleet destroys the Death Star II.</p>
                             <p class="text-gray-300 text-sm">Luke redeems Vader, Palpatine dies. Mourning his friends, Luke is guided by Force ghosts to rebuild a New Jedi Order—one devoid of the old dogma, allowing attachments.</p>
                             <div class="mt-3 inline-block bg-red-900/30 text-red-400 text-xs px-2 py-1 rounded border border-red-800 font-mono">Operation: Cinder Activated</div>
@@ -394,7 +391,7 @@
                 <div class="relative z-10 w-full mb-16 flex flex-col md:flex-row items-center md:justify-between fade-in" style="animation-delay: 0.1s;">
                     <div class="order-2 md:order-1 md:w-5/12 w-full pl-20 md:pr-0 md:pl-0 md:text-right mt-8 md:mt-0">
                         <div class="bg-gray-900/80 border border-gray-700 p-6 rounded-lg shadow-lg hover:border-gray-500 transition-colors">
-                            <h3 class="text-2xl font-scifi font-bold text-white mb-2">The Galactic Concordance</h3>
+                            <h3 class="text-xl sm:text-2xl font-scifi font-bold text-white mb-2">The Galactic Concordance</h3>
                             <p class="text-gray-300 text-sm mb-4">Gallius Rex gathers Imperial forces at Jakku for a suicidal stand. Foiled and shot by Rae Sloane, Rex dies. Sloane, seeing the Empire's end, takes her own life. Mas Amedda signs the Galactic Concordance, officially ending the Galactic Civil War.</p>
                             <p class="text-gray-300 text-sm">The New Republic forms. While some Imperials integrate via the Amnesty Program, others form warlord fiefdoms or the "Shadow Council" in the Northern Outer Rim.</p>
                         </div>
@@ -413,7 +410,7 @@
                     </div>
                     <div class="order-2 md:order-3 md:w-5/12 w-full pl-20 md:pl-0 mt-8 md:mt-0">
                         <div class="bg-gray-900/80 border border-red-900/50 p-6 rounded-lg shadow-[0_4px_20px_rgba(139,0,0,0.1)] hover:border-red-500 transition-colors">
-                            <h3 class="text-2xl font-scifi font-bold text-red-400 mb-2">Rise of the Galactic Imperium</h3>
+                            <h3 class="text-xl sm:text-2xl font-scifi font-bold text-red-400 mb-2">Rise of the Galactic Imperium</h3>
                             <p class="text-gray-300 text-sm mb-4">Following Moff Gideon's death, Moff Draxus Thorne poisons the Shadow Council on Bastion, taking absolute control. He purges incompetence, implementing meritocracy.</p>
                             <p class="text-gray-300 text-sm mb-4">Draxus invades Mandalore, executing Din Djarin, Grogu, and most Mandalorians. He declares the <strong class="text-white">Galactic Imperium</strong>, initiating a 3-year rapid expansion in the north utilizing World Devastators and automation.</p>
                             <p class="text-gray-300 text-sm">Controversially, Draxus allows aliens into the Imperial Army and Navy, and near-humans into the Stormtrooper Corps, bolstering his forces immensely.</p>
@@ -425,7 +422,7 @@
                 <div class="relative z-10 w-full mb-16 flex flex-col md:flex-row items-center md:justify-between fade-in" style="animation-delay: 0.3s;">
                     <div class="order-2 md:order-1 md:w-5/12 w-full pl-20 md:pr-0 md:pl-0 md:text-right mt-8 md:mt-0">
                         <div class="bg-gray-900/80 border border-blue-900/50 p-6 rounded-lg shadow-lg hover:border-blue-500 transition-colors">
-                            <h3 class="text-2xl font-scifi font-bold text-blue-400 mb-2">The Fall of the Grandmaster</h3>
+                            <h3 class="text-xl sm:text-2xl font-scifi font-bold text-blue-400 mb-2">The Fall of the Grandmaster</h3>
                             <p class="text-gray-300 text-sm mb-4">The New Jedi Order flourishes on Yavin 4, located deep in Imperium territory. Emperor Thorne forms the <strong>Order of the Imperial Templars</strong> with a darksider mercenary.</p>
                             <p class="text-gray-300 text-sm mb-4">Thorne fakes diplomacy on Yavin 4, then launches a massive invasion using jamming tech. Overwhelmed, Luke Skywalker surrenders himself to secure his students' escape.</p>
                             <p class="text-gray-300 text-sm text-red-400 font-semibold border-l-2 border-red-500 md:border-l-0 md:border-r-2 pl-3 md:pl-0 md:pr-3 py-1">Luke is taken to Bastion, encased in carbonite, and publicly decapitated by Emperor Thorne.</p>
@@ -460,8 +457,8 @@
         <!-- ==================== FACTIONS PAGE ==================== -->
         <div id="page-factions" class="page-section hidden w-full py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
             <div class="text-center mb-16 fade-in">
-                <h1 class="text-4xl md:text-5xl font-scifi font-black text-white tracking-widest uppercase mb-4">Galactic Powers</h1>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Choose your allegiance. The fate of the galaxy rests on the impending conflict.</p>
+                <h1 class="text-3xl md:text-5xl font-scifi font-black text-white tracking-widest uppercase mb-4">Galactic Powers</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">Choose your allegiance. The fate of the galaxy rests on the impending conflict.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -580,8 +577,8 @@
         <!-- ==================== RULES PAGE ==================== -->
         <div id="page-rules" class="page-section hidden w-full py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
             <div class="text-center mb-12 fade-in">
-                <h1 class="text-4xl md:text-5xl font-scifi font-black text-white tracking-widest uppercase mb-4">Server Rules & Guidelines</h1>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Ignorance is not an excuse. Read the datapad entries below carefully to ensure a safe, engaging, and fair roleplay environment.</p>
+                <h1 class="text-3xl md:text-5xl font-scifi font-black text-white tracking-widest uppercase mb-4">Server Rules & Guidelines</h1>
+                <p class="text-gray-400 max-w-2xl mx-auto text-base md:text-lg">Ignorance is not an excuse. Read the datapad entries below carefully to ensure a safe, engaging, and fair roleplay environment.</p>
             </div>
 
             <!-- AGE REQUIREMENT BANNER -->
@@ -721,9 +718,6 @@
     <footer class="border-t border-gray-800/60 bg-black/90 py-10 mt-auto z-10 relative backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-4">
             
-            <!-- FOOTER LOGO: Replace src with your logo (32×32px recommended) -->
-            <img src="YOUR_LOGO_URL_HERE" alt="TFNE Logo" class="w-8 h-8 rounded-full object-cover opacity-60">
-
             <div class="flex items-center gap-2">
                 <div class="h-px w-12 bg-gradient-to-r from-transparent to-red-800/50"></div>
                 <span class="text-starwars font-scifi text-xs tracking-[0.3em] uppercase opacity-60">⦿</span>
