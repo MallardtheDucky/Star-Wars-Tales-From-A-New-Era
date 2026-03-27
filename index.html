@@ -15,7 +15,15 @@
     <meta property="og:title" content="Star Wars: Tales from a New Era (18+)">
     <meta property="og:description" content="17 ABY. The galaxy holds its breath. A Cold War brews between the New Republic and the Galactic Imperium. Join our 18+ roleplay community.">
     <!-- PUT YOUR DISCORD EMBED IMAGE URL HERE -->
-    <meta property="og:image" content="images/1000006995-removebg-preview.png">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/050505/ff0000?text=Tales+From+a+New+Era+17+ABY">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Star Wars: Tales from a New Era (18+)">
+    <meta property="twitter:description" content="17 ABY. The galaxy holds its breath. A Cold War brews between the New Republic and the Galactic Imperium.">
+    <!-- PUT YOUR TWITTER EMBED IMAGE URL HERE -->
+    <meta property="twitter:image" content="https://via.placeholder.com/1200x630/050505/ff0000?text=Tales+From+a+New+Era+17+ABY">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -99,6 +107,7 @@
         .neon-text-red { text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); }
         .neon-text-blue { text-shadow: 0 0 10px rgba(0, 91, 159, 0.7); }
         
+        /* Fade in animation */
         .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -108,6 +117,7 @@
 </head>
 <body class="font-body antialiased min-h-screen flex flex-col">
 
+    <!-- Background -->
     <div class="stars"></div>
     <div class="twinkling"></div>
 
@@ -116,24 +126,32 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
+                    
+                    <!-- PUT YOUR SERVER LOGO URL HERE IN THE src="" ATTRIBUTE -->
+                    <!-- <img src="YOUR_LOGO_URL_HERE.png" alt="TFNE Logo" class="w-10 h-10 rounded-full border border-gray-600"> -->
+                    
+                    <!-- Fallback CSS Logo if you don't have an image yet -->
                     <div class="w-10 h-10 bg-gray-900 rounded-full border border-gray-600 flex items-center justify-center text-starwars font-scifi font-bold shadow-[0_0_10px_rgba(255,232,31,0.2)]">
                         TFNE
                     </div>
                     <span class="font-scifi font-bold text-xl tracking-wider text-white hidden sm:block">TALES FROM A NEW ERA <span class="text-xs text-red-500 ml-1">18+</span></span>
                 </div>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-6">
                         <button onclick="navigate('home')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Home</button>
                         <button onclick="navigate('timeline')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Timeline</button>
                         <button onclick="navigate('factions')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Factions</button>
                         <button onclick="navigate('rules')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Rules</button>
+                        <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
                         <a href="https://discord.gg/your-invite-link" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(79,70,229,0.5)] flex items-center gap-2">
                             <i class="fab fa-discord"></i> Join Discord
                         </a>
                     </div>
                 </div>
 
+                <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-400 hover:text-white focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
@@ -142,12 +160,14 @@
             </div>
         </div>
 
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black/95 border-b border-gray-800 absolute w-full z-40">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <button onclick="navigate('home'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Home</button>
                 <button onclick="navigate('timeline'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Timeline</button>
                 <button onclick="navigate('factions'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Factions</button>
                 <button onclick="navigate('rules'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Rules</button>
+                <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
                 <a href="https://discord.gg/your-invite-link" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white block px-3 py-2 rounded-md text-base font-bold w-full text-center uppercase tracking-widest mt-4">
                     <i class="fab fa-discord"></i> Join Discord
                 </a>
@@ -155,12 +175,18 @@
         </div>
     </nav>
 
+    <!-- Main Content Container -->
     <main id="app-content" class="flex-grow z-10 w-full">
         
         <!-- ==================== HOME PAGE ==================== -->
         <div id="page-home" class="page-section w-full">
+            <!-- Hero Banner -->
+            
+            <!-- PUT YOUR HERO BANNER IMAGE URL IN THE URL BELOW. REPLACE THE placeholder.com LINK -->
             <div class="relative w-full h-[70vh] flex items-center justify-center overflow-hidden border-b border-gray-800 bg-[url('https://via.placeholder.com/1920x1080/050505/111111?text=Cold+War+Teaser+Image')] bg-cover bg-center">
+                
                 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black z-10"></div>
+                <!-- Background overlay effect -->
                 <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/30 via-transparent to-transparent z-0"></div>
                 
                 <div class="relative z-20 text-center px-4 max-w-5xl mx-auto mt-10 fade-in">
@@ -174,6 +200,7 @@
                         A brutal Cold War ravages the stars. The sluggish New Republic re-arms in desperation, while the meritocratic Galactic Imperium prepares its final strike.
                     </p>
                     <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                        <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
                         <a href="https://discord.gg/your-invite-link" target="_blank" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(79,70,229,0.6)] flex items-center justify-center gap-3 text-lg">
                             <i class="fab fa-discord text-2xl"></i> Join the Server
                         </a>
@@ -184,18 +211,28 @@
                 </div>
             </div>
 
+            <!-- Backstory Summary -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                     <div>
                         <h2 class="text-3xl font-scifi font-bold mb-6 text-starwars border-b border-gray-700 pb-2 uppercase tracking-widest">The State of the Galaxy</h2>
                         <div class="space-y-4 text-gray-300 leading-relaxed text-lg">
-                            <p>Everything before the Battle of Endor remains as you know it. But the deaths of the Rebel Strike Team on Endor changed the trajectory of the galaxy forever.</p>
-                            <p>From the ashes of the old Empire rose Emperor Draxus Thorne, a charismatic visionary who united the Remnants through cunning, meritocracy, and ruthless efficiency. He formed the <strong class="text-red-400">Galactic Imperium</strong>, stripping away the xenophobia of the past to build a terrifyingly competent war machine.</p>
-                            <p>In response, the <strong class="text-blue-400">New Republic</strong> struggles. Stretched thin, marred by corruption, and reeling from the shocking execution of Grandmaster Luke Skywalker, they frantically build their fleets to meet the northern threat.</p>
-                            <p>Now, in <strong class="text-white">17 ABY</strong>, an uneasy Cold War has settled. The New Jedi Order hides on Devaron, while the dark Order of the Imperial Templars rules Yavin 4. War is inevitable. Who will you fight for?</p>
+                            <p>
+                                Everything before the Battle of Endor remains as you know it. But the deaths of the Rebel Strike Team on Endor changed the trajectory of the galaxy forever.
+                            </p>
+                            <p>
+                                From the ashes of the old Empire rose Emperor Draxus Thorne, a charismatic visionary who united the Remnants through cunning, meritocracy, and ruthless efficiency. He formed the <strong class="text-red-400">Galactic Imperium</strong>, stripping away the xenophobia of the past to build a terrifyingly competent war machine.
+                            </p>
+                            <p>
+                                In response, the <strong class="text-blue-400">New Republic</strong> struggles. Stretched thin, marred by corruption, and reeling from the shocking execution of Grandmaster Luke Skywalker, they frantically build their fleets to meet the northern threat.
+                            </p>
+                            <p>
+                                Now, in <strong class="text-white">17 ABY</strong>, an uneasy Cold War has settled. The New Jedi Order hides on Devaron, while the dark Order of the Imperial Templars rules Yavin 4. War is inevitable. Who will you fight for?
+                            </p>
                         </div>
                     </div>
                     
+                    <!-- Quick Links Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div onclick="navigate('timeline')" class="bg-gray-900/60 border border-gray-700 p-6 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition-all group backdrop-blur-sm">
                             <i class="fas fa-history text-3xl text-blue-400 mb-4 group-hover:scale-110 transition-transform"></i>
@@ -212,6 +249,7 @@
                             <h3 class="text-xl font-scifi font-bold text-white mb-2">Server Rules</h3>
                             <p class="text-gray-400 text-sm">Review our general rules, roleplay systems (PTK/RTK), and mature content guidelines.</p>
                         </div>
+                        <!-- PUT YOUR DISCORD TICKET LINK OR CHANNEL LINK IN THE href="" -->
                         <a href="https://discord.gg/your-invite-link" target="_blank" class="bg-gray-900/60 border border-gray-700 p-6 rounded-lg hover:border-green-500 hover:bg-gray-800 transition-all group backdrop-blur-sm block">
                             <i class="fas fa-id-card text-3xl text-green-400 mb-4 group-hover:scale-110 transition-transform"></i>
                             <h3 class="text-xl font-scifi font-bold text-white mb-2">Verification (18+)</h3>
@@ -230,6 +268,7 @@
             </div>
 
             <div class="relative timeline-line">
+                <!-- 4 ABY -->
                 <div class="relative z-10 w-full mb-16 flex flex-col md:flex-row items-center md:justify-between fade-in">
                     <div class="order-1 md:w-5/12 hidden md:block"></div>
                     <div class="z-20 flex items-center justify-center bg-black border-4 border-gray-600 w-16 h-16 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.2)] md:order-2 order-1 absolute left-[20px] md:left-1/2 transform -translate-x-1/2">
@@ -239,11 +278,13 @@
                         <div class="bg-gray-900/80 border border-gray-700 p-6 rounded-lg shadow-lg hover:border-gray-500 transition-colors">
                             <h3 class="text-2xl font-scifi font-bold text-white mb-2">The Ultimate Sacrifice at Endor</h3>
                             <p class="text-gray-300 text-sm mb-4">A strike team led by Leia Organa, Han Solo, and Chewbacca lands on Endor. Overwhelmed by stormtroopers despite Ewok assistance, and corralled into the bunker, the heroes make the ultimate sacrifice, detonating the shield generator with themselves inside. The Rebel fleet destroys the Death Star II.</p>
-                            <p class="text-gray-300 text-sm">Luke redeems Vader, Palpatine dies. Mourning his friends, Luke is guided by Force ghosts to rebuild a New Jedi Order, one devoid of the old dogma, allowing attachments.</p>
+                            <p class="text-gray-300 text-sm">Luke redeems Vader, Palpatine dies. Mourning his friends, Luke is guided by Force ghosts to rebuild a New Jedi Order—one devoid of the old dogma, allowing attachments.</p>
+                            <div class="mt-3 inline-block bg-red-900/30 text-red-400 text-xs px-2 py-1 rounded border border-red-800 font-mono">Operation: Cinder Activated</div>
                         </div>
                     </div>
                 </div>
 
+                <!-- 5 ABY -->
                 <div class="relative z-10 w-full mb-16 flex flex-col md:flex-row items-center md:justify-between fade-in" style="animation-delay: 0.1s;">
                     <div class="order-2 md:order-1 md:w-5/12 w-full pl-20 md:pr-0 md:pl-0 md:text-right mt-8 md:mt-0">
                         <div class="bg-gray-900/80 border border-gray-700 p-6 rounded-lg shadow-lg hover:border-gray-500 transition-colors">
@@ -258,6 +299,7 @@
                     <div class="order-1 md:order-3 md:w-5/12 hidden md:block"></div>
                 </div>
 
+                <!-- 9 ABY -->
                 <div class="relative z-10 w-full mb-16 flex flex-col md:flex-row items-center md:justify-between fade-in" style="animation-delay: 0.2s;">
                     <div class="order-1 md:w-5/12 hidden md:block"></div>
                     <div class="z-20 flex items-center justify-center bg-black border-4 border-red-800 w-16 h-16 rounded-full shadow-[0_0_15px_rgba(139,0,0,0.5)] md:order-2 order-1 absolute left-[20px] md:left-1/2 transform -translate-x-1/2">
@@ -267,16 +309,19 @@
                         <div class="bg-gray-900/80 border border-red-900/50 p-6 rounded-lg shadow-[0_4px_20px_rgba(139,0,0,0.1)] hover:border-red-500 transition-colors">
                             <h3 class="text-2xl font-scifi font-bold text-red-400 mb-2">Rise of the Galactic Imperium</h3>
                             <p class="text-gray-300 text-sm mb-4">Following Moff Gideon's death, Moff Draxus Thorne poisons the Shadow Council on Bastion, taking absolute control. He purges incompetence, implementing meritocracy.</p>
-                            <p class="text-gray-300 text-sm">He declares the <strong class="text-white">Galactic Imperium</strong>, initiating a 3-year rapid expansion in the north utilizing World Devastators and automation. Draxus allows aliens into the Imperial Army and Navy, bolstering his forces immensely.</p>
+                            <p class="text-gray-300 text-sm mb-4">Draxus invades Mandalore, executing Din Djarin, Grogu, and most Mandalorians. He declares the <strong class="text-white">Galactic Imperium</strong>, initiating a 3-year rapid expansion in the north utilizing World Devastators and automation.</p>
+                            <p class="text-gray-300 text-sm">Controversially, Draxus allows aliens into the Imperial Army and Navy, and near-humans into the Stormtrooper Corps, bolstering his forces immensely.</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- 12 ABY -->
                 <div class="relative z-10 w-full mb-16 flex flex-col md:flex-row items-center md:justify-between fade-in" style="animation-delay: 0.3s;">
                     <div class="order-2 md:order-1 md:w-5/12 w-full pl-20 md:pr-0 md:pl-0 md:text-right mt-8 md:mt-0">
                         <div class="bg-gray-900/80 border border-blue-900/50 p-6 rounded-lg shadow-lg hover:border-blue-500 transition-colors">
                             <h3 class="text-2xl font-scifi font-bold text-blue-400 mb-2">The Fall of the Grandmaster</h3>
-                            <p class="text-gray-300 text-sm mb-4">The New Jedi Order flourishes on Yavin 4, located deep in Imperium territory. Emperor Thorne fakes diplomacy, then launches a massive invasion using jamming tech.</p>
+                            <p class="text-gray-300 text-sm mb-4">The New Jedi Order flourishes on Yavin 4, located deep in Imperium territory. Emperor Thorne forms the <strong>Order of the Imperial Templars</strong> with a darksider mercenary.</p>
+                            <p class="text-gray-300 text-sm mb-4">Thorne fakes diplomacy on Yavin 4, then launches a massive invasion using jamming tech. Overwhelmed, Luke Skywalker surrenders himself to secure his students' escape.</p>
                             <p class="text-gray-300 text-sm text-red-400 font-semibold border-l-2 border-red-500 md:border-l-0 md:border-r-2 pl-3 md:pl-0 md:pr-3 py-1">Luke is taken to Bastion, encased in carbonite, and publicly decapitated by Emperor Thorne.</p>
                             <p class="text-gray-300 text-sm mt-3">The Jedi flee to Devaron. The New Republic, terrified by Thorne's power, begins rapid militarization.</p>
                         </div>
@@ -287,6 +332,7 @@
                     <div class="order-1 md:order-3 md:w-5/12 hidden md:block"></div>
                 </div>
 
+                 <!-- 17 ABY -->
                  <div class="relative z-10 w-full flex flex-col md:flex-row items-center md:justify-between fade-in" style="animation-delay: 0.4s;">
                     <div class="order-1 md:w-5/12 hidden md:block"></div>
                     <div class="z-20 flex items-center justify-center bg-black border-4 border-white w-20 h-20 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.6)] md:order-2 order-1 absolute left-[20px] md:left-1/2 transform -translate-x-1/2">
@@ -294,11 +340,14 @@
                     </div>
                     <div class="order-2 md:order-3 md:w-5/12 w-full pl-24 md:pl-0 mt-8 md:mt-0">
                         <div class="bg-gradient-to-br from-gray-900 to-black border-2 border-white p-6 rounded-lg shadow-[0_0_30px_rgba(255,255,255,0.1)] relative overflow-hidden">
+                            <div class="absolute -right-10 -top-10 text-9xl text-white/5 opacity-20"><i class="fas fa-snowflake"></i></div>
                             <h3 class="text-3xl font-scifi font-black text-white mb-2 uppercase tracking-widest">The Cold War</h3>
-                            <p class="text-gray-300 text-base leading-relaxed">Present day. The Galactic Imperium fully controls the North/Northeast. The Imperial Templars rule from the former Jedi Temple on Yavin 4. The New Republic and Imperium are locked in an intense Cold War.</p>
+                            <p class="text-gray-300 text-base leading-relaxed">Present day. The Galactic Imperium fully controls the North/Northeast. The Imperial Templars rule from the former Jedi Temple on Yavin 4.</p>
+                            <p class="text-gray-300 text-base leading-relaxed mt-2">The New Republic and Imperium are locked in an intense Cold War, building armies, engaging in espionage, and waiting for the spark that will ignite the galaxy into full-scale war.</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -313,9 +362,11 @@
                 
                 <!-- Galactic Imperium -->
                 <div class="bg-gradient-to-b from-red-950/40 to-black border border-red-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(139,0,0,0.2)] flex flex-col fade-in">
-                    <div class="h-48 bg-[url('images/1000006995-removebg-preview.png')] bg-cover bg-center border-b border-red-900 relative">
+                    <!-- PUT YOUR IMPERIUM IMAGE URL HERE IN bg-[url('...')] -->
+                    <div class="h-48 bg-[url('https://via.placeholder.com/800x400/220000/ff0000?text=Imperial+Fleet')] bg-cover bg-center border-b border-red-900 relative">
                         <div class="absolute inset-0 bg-black/50"></div>
                         <div class="absolute bottom-4 left-4 z-10 flex items-center gap-3">
+                            <!-- PUT YOUR IMPERIUM LOGO IMAGE URL HERE OR KEEP ICON -->
                             <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center border border-red-600 shadow-[0_0_10px_rgba(255,0,0,0.5)]">
                                 <i class="fas fa-empire text-red-500 text-2xl"></i>
                             </div>
@@ -328,26 +379,24 @@
                             <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-2 py-1 rounded bg-gray-800/50 ml-2 mt-2 sm:mt-0 inline-block">Leader: Emperor Draxus Thorne</span>
                         </div>
                         <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                            A reborn, highly efficient autocracy built on the ashes of Palpatine's Empire. Emperor Thorne has eradicated the nepotism and xenophobia of the past, creating a meritocracy.
+                            A reborn, highly efficient autocracy built on the ashes of Palpatine's Empire. Emperor Thorne has eradicated the nepotism and xenophobia of the past, creating a meritocracy. Aliens serve in the Army and Navy, and automation feeds an endless war machine.
                         </p>
                         <h4 class="font-scifi font-bold text-white border-b border-gray-700 pb-1 mb-2">Military Structure</h4>
                         <ul class="text-sm text-gray-400 space-y-2 mb-6">
                             <li><i class="fas fa-chevron-right text-red-500 text-xs mr-2"></i> <strong>Imperial Navy:</strong> Integrated, massive, heavily automated.</li>
                             <li><i class="fas fa-chevron-right text-red-500 text-xs mr-2"></i> <strong>Stormtrooper Corps:</strong> Elite offensive force (Humans & Near-Humans).</li>
+                            <li><i class="fas fa-chevron-right text-red-500 text-xs mr-2"></i> <strong>Imperial Army:</strong> Standard defense force (All species welcome).</li>
                         </ul>
-                        <div class="mt-auto pt-6 border-t border-gray-800">
-                            <a href="https://mallardtheducky.github.io/Imperial-Chain-of-Command/" target="_blank" class="w-full bg-red-700 hover:bg-red-600 text-white font-scifi font-bold py-3 rounded text-center block transition-all uppercase tracking-widest shadow-[0_0_10px_rgba(185,28,28,0.4)]">
-                                <i class="fas fa-sitemap mr-2"></i> View Chain of Command
-                            </a>
-                        </div>
                     </div>
                 </div>
 
                 <!-- New Republic -->
                 <div class="bg-gradient-to-b from-blue-950/40 to-black border border-blue-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,91,159,0.2)] flex flex-col fade-in" style="animation-delay: 0.1s;">
-                    <div class="h-48 bg-[url('images/Galactic_Union-1.webp')] bg-cover bg-center border-b border-blue-900 relative">
+                    <!-- PUT YOUR NEW REPUBLIC IMAGE URL HERE IN bg-[url('...')] -->
+                    <div class="h-48 bg-[url('https://via.placeholder.com/800x400/001122/0088ff?text=Republic+Senate')] bg-cover bg-center border-b border-blue-900 relative">
                         <div class="absolute inset-0 bg-black/50"></div>
                         <div class="absolute bottom-4 left-4 z-10 flex items-center gap-3">
+                            <!-- PUT YOUR NEW REPUBLIC LOGO IMAGE URL HERE OR KEEP ICON -->
                             <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center border border-blue-600 shadow-[0_0_10px_rgba(0,100,255,0.5)]">
                                 <i class="fas fa-rebel text-blue-500 text-2xl"></i>
                             </div>
@@ -360,18 +409,14 @@
                             <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-2 py-1 rounded bg-gray-800/50 ml-2 mt-2 sm:mt-0 inline-block">Gov: Galactic Senate</span>
                         </div>
                         <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                            The legitimate democratic government of the galaxy. Though vast, it is plagued by bureaucratic slowness and internal corruption from integrated Imperial officials.
+                            The legitimate democratic government of the galaxy. Though vast, it is plagued by bureaucratic slowness, internal corruption from integrated Imperial officials, and military thinness. Jolted awake by the death of Luke Skywalker, they are rapidly militarizing.
                         </p>
                         <h4 class="font-scifi font-bold text-white border-b border-gray-700 pb-1 mb-2">Current State</h4>
                         <ul class="text-sm text-gray-400 space-y-2 mb-6">
-                            <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Military:</strong> Expanding shipyards, high focus on starfighters.</li>
+                            <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Military:</strong> Rapidly expanding shipyards, high focus on starfighters.</li>
                             <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Politics:</strong> Divided senate, struggling to manage outer rim security.</li>
+                            <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Perception:</strong> Viewed by some as weak, but possesses vast industrial might.</li>
                         </ul>
-                        <div class="mt-auto pt-6 border-t border-gray-800">
-                            <a href="https://mallardtheducky.github.io/New-Republic-Chain-of-Command/" target="_blank" class="w-full bg-blue-700 hover:bg-blue-600 text-white font-scifi font-bold py-3 rounded text-center block transition-all uppercase tracking-widest shadow-[0_0_10px_rgba(29,78,216,0.4)]">
-                                <i class="fas fa-sitemap mr-2"></i> View Chain of Command
-                            </a>
-                        </div>
                     </div>
                 </div>
 
@@ -379,11 +424,13 @@
                 <div class="bg-gradient-to-b from-purple-950/40 to-black border border-purple-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(128,0,128,0.2)] flex flex-col fade-in" style="animation-delay: 0.2s;">
                     <div class="p-6 flex-grow">
                         <div class="flex items-center gap-3 mb-4">
+                            <!-- TEMPLARS LOGO HERE -->
                             <i class="fas fa-khanda text-purple-500 text-3xl"></i>
                             <h3 class="text-2xl font-scifi font-bold text-white uppercase">Imperial Templars</h3>
                         </div>
+                        <span class="text-xs uppercase tracking-widest text-purple-400 font-bold border border-purple-900 px-2 py-1 rounded bg-purple-900/20 mb-4 inline-block">Base: Yavin 4</span>
                         <p class="text-gray-300 text-sm leading-relaxed">
-                            A dark-side Force order acting as the Imperium's elite enforcers. They occupy the former Jedi Temple on Yavin 4.
+                            A dark-side Force order acting as the Imperium's elite enforcers and peacekeepers. Formed by a mercenary trained by a fallen Order 66 survivor. They occupy the former Jedi Praxeum and recruit inquisitors, dark jedi, and darkside cultists to serve the Emperor's will.
                         </p>
                     </div>
                 </div>
@@ -392,14 +439,17 @@
                 <div class="bg-gradient-to-b from-green-950/40 to-black border border-green-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,128,0,0.2)] flex flex-col fade-in" style="animation-delay: 0.3s;">
                     <div class="p-6 flex-grow">
                         <div class="flex items-center gap-3 mb-4">
+                            <!-- JEDI LOGO HERE -->
                             <i class="fas fa-jedi text-green-500 text-3xl"></i>
                             <h3 class="text-2xl font-scifi font-bold text-white uppercase">New Jedi Order</h3>
                         </div>
+                        <span class="text-xs uppercase tracking-widest text-green-400 font-bold border border-green-900 px-2 py-1 rounded bg-green-900/20 mb-4 inline-block">Base: Devaron</span>
                         <p class="text-gray-300 text-sm leading-relaxed">
-                            Survivors of the Bastion execution retreated to Devaron. They welcome diverse light-side sects and honor Luke's sacrifice.
+                            Severely wounded by the execution of Grandmaster Luke Skywalker, the survivors retreated to Devaron. Built on Luke's reforms—allowing attachments, rejecting dogma, and welcoming diverse light-side sects—the Order now operates as an independent vigilante force seeking to honor Luke's sacrifice.
                         </p>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -410,6 +460,7 @@
                 <p class="text-gray-400 max-w-2xl mx-auto text-lg">Ignorance is not an excuse. Read the datapad entries below carefully to ensure a safe, engaging, and fair roleplay environment.</p>
             </div>
 
+            <!-- AGE REQUIREMENT BANNER -->
             <div class="bg-red-950/40 border-2 border-red-700 rounded-xl p-6 md:p-8 mb-12 shadow-[0_0_30px_rgba(139,0,0,0.3)] fade-in">
                 <div class="flex flex-col md:flex-row items-center gap-6">
                     <div class="bg-red-900/50 p-4 rounded-full border border-red-500 text-red-400 text-4xl">
@@ -417,7 +468,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-scifi font-bold text-white uppercase mb-2">Age Requirement (18+)</h2>
-                        <p class="text-gray-300 text-sm mb-3">This community is purely for people that are 18+ in age. All members must verify their age within 48 hours of joining. If they don't verify, they will not see the entire server and will be kicked after 48 hours.</p>
+                        <p class="text-gray-300 text-sm mb-3">This community is purely for people that are <strong>18+ in age</strong>. All members must verify their age within 48 hours of joining. If they don't verify, they will not see the entire server and will be kicked after 48 hours.</p>
                         <div class="bg-black/50 border border-gray-700 p-4 rounded-lg text-sm text-gray-300">
                             <strong class="text-white">How do I verify?</strong> Go to the <span class="text-indigo-400 font-mono">╰┈➤┆tickets</span> channel and make an age verification ticket. Send a picture of your ID with everything blotted out <em>except for your D.O.B.</em> In that same picture, you must show a physical note with your Discord name, current date, server name, and the server password hidden in the rules. Once completed, you will receive the <span class="bg-indigo-900/50 text-indigo-300 px-2 py-1 rounded text-xs border border-indigo-700">@Verified</span> role.
                         </div>
@@ -426,9 +477,12 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- GENERAL RULES -->
                 <div class="space-y-6 fade-in" style="animation-delay: 0.1s;">
                     <h2 class="text-3xl font-scifi font-bold text-starwars border-b border-gray-700 pb-2 uppercase tracking-widest"><i class="fas fa-gavel mr-3"></i>General Rules</h2>
                     
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Discrimination Policy</h3>
                         <p class="text-sm text-gray-300 mb-2">Discrimination in any form (homophobia, racism, sexism, ableism, etc.) is strictly prohibited. We are dedicated to creating a welcoming, inclusive environment.</p>
@@ -436,128 +490,160 @@
                         <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings, temporary, or permanent bans depending on severity.</p>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Respect Boundaries & Consent</h3>
                         <p class="text-sm text-gray-300 mb-2">Listening to and respecting others' boundaries is essential. If someone asks you to stop a certain behavior, you must heed their words.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2 mb-2"><strong>Consequences:</strong> Warnings, temp, or permanent bans.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-green-500 pl-2"><strong>Reporting:</strong> Report violations to moderation immediately.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2 mb-2"><strong>Consequences:</strong> Disciplinary action including warnings, temp, or permanent bans.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-green-500 pl-2"><strong>Reporting:</strong> Report boundary violations to moderation immediately. Action will be taken.</p>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Respect Staff Authority</h3>
                         <p class="text-sm text-gray-300 mb-2">Listen to and respect staff members. They are here to ensure community well-being and enforce rules fairly.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2 mb-2"><strong>Consequences:</strong> Warnings, temporary timeouts, or more.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-green-500 pl-2"><strong>Reporting Staff:</strong> Inform <span class="text-indigo-400 font-bold">@Jacob1173</span> directly of misconduct.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2 mb-2"><strong>Consequences:</strong> Disrespect leads to warnings, temporary timeouts, or worse.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-green-500 pl-2"><strong>Reporting Staff:</strong> If you have concerns about a staff member's conduct, inform <span class="text-indigo-400 font-bold">@Jacob1173</span> directly.</p>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Minimize Drama</h3>
                         <p class="text-sm text-gray-300 mb-2">Drama leading to disruptive arguments detracts from the atmosphere. Prevent conflicts from escalating into full-blown disputes.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings serve as reminders. Persistent drama leads to removal.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings will be issued to involved parties. Persistent drama leads to removal from the server.</p>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">No Advertising or Promotion</h3>
-                        <p class="text-sm text-gray-300 mb-2">Advertising oneself, other servers, or services is not allowed. To partner, ask <span class="text-indigo-400 font-bold">@Jacob1173</span>.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings, leading to temp/perm removal.</p>
+                        <p class="text-sm text-gray-300 mb-2">Advertising oneself, other servers, products, or services is not allowed (including unsolicited DMs). To partner, ask <span class="text-indigo-400 font-bold">@Jacob1173</span>.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings. Continued promo results in temp/perm bans.</p>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Protect Personal Information & Accusations</h3>
-                        <p class="text-sm text-gray-300 mb-3"><strong>Privacy:</strong> Posting/seeking real names or private info results in immediate action.</p>
-                        <p class="text-sm text-gray-300 mb-2"><strong>Accusations:</strong> Requires strong, undeniable proof (screenshots, logs). Speculation is not accepted.</p>
-                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Verified wrongdoing leads to disciplinary procedures.</p>
+                        <p class="text-sm text-gray-300 mb-3"><strong>Doxxing:</strong> Posting/seeking real names, addresses, or any IRL info without consent results in IMMEDIATE action.</p>
+                        <p class="text-sm text-gray-300 mb-2"><strong>Accusations:</strong> Accusing others requires strong, undeniable evidence (screenshots, logs). Speculation/hearsay is not accepted.</p>
+                        <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Unsubstantiated claims are disregarded. Verified accusations result in disciplinary action.</p>
                     </div>
                 </div>
 
+                <!-- ROLEPLAY RULES -->
                 <div class="space-y-6 fade-in" style="animation-delay: 0.2s;">
                     <h2 class="text-3xl font-scifi font-bold text-purple-400 border-b border-gray-700 pb-2 uppercase tracking-widest"><i class="fas fa-dice-d20 mr-3"></i>Roleplay Rules</h2>
                     
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">PTK and RTK Systems</h3>
                         <div class="space-y-2 text-sm text-gray-300">
-                            <p><strong class="text-purple-400">Permission to Kill (PTK):</strong> Obtain explicit permission from the player before taking their character's life.</p>
-                            <p><strong class="text-purple-400">Reason to Kill (RTK):</strong> Used if situation realistically leads to death. Reason must be clear and justified.</p>
+                            <p><strong class="text-purple-400">Permission to Kill (PTK):</strong> Before taking a character’s life, you must obtain explicit permission from the player controlling them.</p>
+                            <p><strong class="text-purple-400">Reason to Kill (RTK):</strong> If a situation realistically leads to death and provides no plausible escape, RTK will be used. The reason must be clear and justified within RP context.</p>
+                            <p class="text-gray-400 italic text-xs mt-2">Unclear situations? Ping an available staff member for guidance.</p>
                         </div>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">OP Roleplaying is Prohibited</h3>
                         <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
-                            <li><strong>Auto-Hitting:</strong> Hitting someone without their consent.</li>
-                            <li><strong>Auto-Dodging:</strong> Dodging everything without influence from others.</li>
-                            <li><strong>Metagaming:</strong> Using OOC knowledge in IC context.</li>
-                            <li><strong>Forcing Actions:</strong> Compelling characters against personality or consent.</li>
+                            <li><strong>Auto-Hitting:</strong> Hitting/injuring someone without their consent to dictate the outcome.</li>
+                            <li><strong>Auto-Dodging:</strong> Dodging every attack without giving others a chance to influence the outcome.</li>
+                            <li><strong>Metagaming:</strong> Using OOC knowledge in IC situations.</li>
+                            <li><strong>Forcing Actions/Coercion:</strong> Compelling characters to act against their personality, goals, or player consent.</li>
                         </ul>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Roleplay Content Guidelines</h3>
-                        <p class="text-sm text-gray-300 mb-2"><strong>Minimum Effort:</strong> Three Sentence Minimum per post. One-liners result in staff intervention.</p>
-                        <p class="text-sm text-gray-300 mb-2"><strong>AI Content:</strong> Strictly Prohibited. All posts must be handwritten.</p>
-                        <p class="text-sm text-gray-300 mb-2"><strong>Medical Conditions:</strong> Must be handled with accuracy and sensitivity {=Daddy Please=}. Research thoroughly.</p>
-                        <p class="text-sm text-gray-300"><strong>Multiple RPs:</strong> Single characters may participate in up to 3 roleplays at once if timelines align.</p>
+                        <p class="text-sm text-gray-300 mb-2"><strong>Minimum Effort:</strong> Three Sentence Minimum per post. One-liners are discouraged and consistent use results in staff intervention.</p>
+                        <p class="text-sm text-gray-300 mb-2"><strong>AI Content:</strong> Strictly Prohibited. All RP posts, sheets, and narrative elements must be handwritten. Violations lead to warnings or removal.</p>
+                        <p class="text-sm text-gray-300 mb-2"><strong>Multiple RPs:</strong> A single character may participate in up to 3 roleplays concurrently, provided timelines align logically without conflict.</p>
+                        <p class="text-sm text-gray-300"><strong>Medical Conditions:</strong> Must be handled with accuracy and sensitivity {=Daddy Please=}. Research thoroughly to avoid misrepresentation. Feedback on poor portrayals must be accepted, or characters risk removal.</p>
                     </div>
 
+                    <!-- Rule Item -->
                     <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
                         <h3 class="text-xl font-bold text-white mb-2">Combat (CRP) & Erotic (ERP) Roleplay</h3>
                         <div class="space-y-3 text-sm text-gray-300">
-                            <p><strong>CRP:</strong> Integrated part of the story, encouraged where appropriate. Respect outcomes.</p>
-                            <p><strong>ERP:</strong> Permitted but MUST be kept in threads. Appropriate tagging and OOC/IC consent required.</p>
+                            <p><strong>CRP:</strong> Highly encouraged. Plan scenes fairly, avoid godmodding, and respect combat outcomes.</p>
+                            <p><strong>ERP:</strong> Permitted, but MUST be kept in threads and tagged appropriately. Consent is required IC and OOC.</p>
                             
                             <div class="bg-black/50 p-3 rounded border border-gray-800 mt-2">
                                 <h4 class="text-red-400 font-bold mb-1"><i class="fas fa-exclamation-triangle mr-1"></i> NSFW Restrictions</h4>
+                                <p class="text-xs text-gray-400 mb-2">As an 18+ server, some themes are heavily restricted or outright banned.</p>
                                 <ul class="list-none space-y-1 text-xs">
                                     <li><span class="text-yellow-500 font-bold">Restricted (extreme-hentai channel ONLY):</span> Zoophilia, Heavy Abuse, Amputee.</li>
-                                    <li><span class="text-red-500 font-bold">BANNED:</span> Necrophilia, Loli/Shota, IRL Zoophilia, Heavy Gore/Guro, Scat, Vore.</li>
+                                    <li><span class="text-red-500 font-bold">BANNED (Immediate Warn/Ban):</span> Necrophilia, Loli/Shota, IRL Zoophilia, Heavy Gore/Guro, Scat, Vore.</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <div class="text-center mt-12 text-gray-500 font-scifi uppercase tracking-widest text-sm border-t border-gray-800 pt-8 fade-in" style="animation-delay: 0.3s;">
                 {== MORE RULES MAY BE ADDED IN THE FUTURE ==}
             </div>
+
         </div>
+
     </main>
 
+    <!-- Footer -->
     <footer class="border-t border-gray-800 bg-black py-8 mt-auto z-10 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-            <p class="text-gray-500 font-scifi uppercase tracking-widest text-sm mb-2">Star Wars: Tales from a New Era, 17 ABY</p>
-            <p class="text-gray-600 text-xs max-w-2xl mx-auto">This is a fan-made roleplay community. Star Wars is the property of Lucasfilm Ltd. and The Walt Disney Company. <span class="text-red-500 font-bold ml-2">18+ WARNING: Mature Themes</span></p>
+            
+            <!-- PUT YOUR LOGO HERE IN THE FOOTER TOO IF YOU WISH -->
+            <!-- <img src="YOUR_LOGO_URL_HERE.png" alt="Logo" class="w-8 h-8 opacity-50 mb-3"> -->
+            
+            <p class="text-gray-500 font-scifi uppercase tracking-widest text-sm mb-2">Star Wars: Tales from a New Era © 17 ABY</p>
+            <p class="text-gray-600 text-xs max-w-2xl mx-auto">This is a fan-made roleplay community. Star Wars is the property of Lucasfilm Ltd. and The Walt Disney Company. This site is for non-commercial entertainment purposes only. <span class="text-red-500 font-bold ml-2">18+ WARNING: Mature Themes</span></p>
         </div>
     </footer>
 
+    <!-- JavaScript for SPA Routing and Interactivity -->
     <script>
+        // Simple SPA Router
         function navigate(pageId) {
+            // Hide all pages
             const pages = document.querySelectorAll('.page-section');
             pages.forEach(page => {
                 page.classList.add('hidden');
-                page.classList.remove('fade-in');
+                page.classList.remove('fade-in'); // Reset animation
             });
 
+            // Show selected page
             const targetPage = document.getElementById('page-' + pageId);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
+                // Trigger reflow to restart animation
                 void targetPage.offsetWidth;
                 targetPage.classList.add('fade-in');
             }
 
+            // Update nav active states
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => {
-                if (btn.textContent.toLowerCase().includes(pageId) || (pageId === 'rules' && btn.textContent.toLowerCase().includes('rules'))) {
+                if (btn.textContent.toLowerCase().includes(pageId) || 
+                   (pageId === 'rules' && btn.textContent.toLowerCase().includes('rules'))) {
                     btn.classList.add('text-white');
                     btn.classList.remove('text-gray-300');
+                    if(pageId === 'timeline') btn.style.textShadow = "0 0 10px rgba(255,255,255,0.5)";
                 } else {
                     btn.classList.remove('text-white');
                     btn.classList.add('text-gray-300');
+                    btn.style.textShadow = "none";
                 }
             });
+
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
@@ -565,9 +651,13 @@
 
         document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
 
+        // Initialize active state
         document.addEventListener('DOMContentLoaded', () => {
+            // Set initial active state for home button
             const homeBtns = document.querySelectorAll('.nav-btn');
-            if(homeBtns.length > 0) homeBtns[0].classList.add('text-white');
+            if(homeBtns.length > 0) {
+                homeBtns[0].classList.add('text-white');
+            }
         });
     </script>
 </body>
