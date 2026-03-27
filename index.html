@@ -61,7 +61,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated Starfield Background */
+        /* ── Starfield ── */
         .stars, .twinkling {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -78,41 +78,152 @@
             animation: move-twink-back 200s linear infinite;
         }
         @keyframes move-twink-back {
-            from {background-position: 0 0;}
-            to {background-position: -10000px 5000px;}
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        /* ── Scanline overlay for cinematic feel ── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.04) 2px,
+                rgba(0,0,0,0.04) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
 
-        /* Timeline styling */
+        /* ── Custom Scrollbar ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #8b0000, #005b9f);
+            border-radius: 3px;
+        }
+
+        /* ── Nav glow line ── */
+        nav {
+            box-shadow: 0 1px 0 rgba(255,232,31,0.08), 0 4px 30px rgba(0,0,0,0.8);
+        }
+
+        /* ── Timeline ── */
         .timeline-line::before {
             content: '';
             position: absolute;
             top: 0; bottom: 0;
             left: 50%;
             width: 2px;
-            background: linear-gradient(to bottom, #005b9f, #8b0000);
+            background: linear-gradient(to bottom, #005b9f 0%, #8b0000 50%, #6b21a8 100%);
             transform: translateX(-50%);
+            box-shadow: 0 0 8px rgba(0,91,159,0.3);
         }
         @media (max-width: 768px) {
-            .timeline-line::before {
-                left: 20px;
-            }
+            .timeline-line::before { left: 20px; }
         }
 
-        .neon-text-red { text-shadow: 0 0 10px rgba(255, 0, 0, 0.7); }
-        .neon-text-blue { text-shadow: 0 0 10px rgba(0, 91, 159, 0.7); }
-        
-        /* Fade in animation */
-        .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ── Glow text ── */
+        .neon-text-red  { text-shadow: 0 0 12px rgba(255,0,0,0.8),   0 0 30px rgba(255,0,0,0.3); }
+        .neon-text-blue { text-shadow: 0 0 12px rgba(0,91,159,0.8),  0 0 30px rgba(0,100,255,0.3); }
+        .neon-text-gold { text-shadow: 0 0 12px rgba(255,232,31,0.7), 0 0 30px rgba(255,232,31,0.2); }
+
+        /* ── Faction card hover lift ── */
+        .faction-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+        .faction-card:hover {
+            transform: translateY(-4px);
+        }
+        .faction-card.imperial:hover  { box-shadow: 0 0 40px rgba(139,0,0,0.35); }
+        .faction-card.republic:hover  { box-shadow: 0 0 40px rgba(0,91,159,0.35); }
+        .faction-card.templars:hover  { box-shadow: 0 0 40px rgba(128,0,128,0.35); }
+        .faction-card.jedi:hover      { box-shadow: 0 0 40px rgba(0,160,80,0.35); }
+
+        /* ── Faction banner image placeholder ── */
+        .faction-banner {
+            position: relative;
+            overflow: hidden;
+        }
+        .faction-banner .placeholder-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.5);
+            color: rgba(255,255,255,0.35);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: 'Exo 2', sans-serif;
+            pointer-events: none;
+        }
+        .faction-banner .placeholder-overlay i { font-size: 22px; opacity: 0.4; }
+
+        /* ── Logo placeholder circle ── */
+        .logo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 9px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        /* ── Rule card ── */
+        .rule-card {
+            transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+        }
+        .rule-card:hover { transform: translateX(3px); }
+
+        /* ── Hero text shimmer ── */
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position:  200% center; }
+        }
+        .text-shimmer {
+            background: linear-gradient(90deg, #60a5fa, #ffffff, #f87171, #ffffff, #60a5fa);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 6s linear infinite;
+        }
+
+        /* ── Animated border on hero badge ── */
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 6px rgba(255,0,0,0.4); }
+            50%       { box-shadow: 0 0 18px rgba(255,0,0,0.8); }
+        }
+        .pulse-border { animation: pulse-border 2.5s ease-in-out infinite; }
+
+        /* ── Fade in ── */
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Section divider ── */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,232,31,0.2), transparent);
+            margin: 0;
+        }
+
+        /* ── Quick-link card ── */
+        .quick-link {
+            transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+        }
+        .quick-link:hover { transform: translateY(-3px); }
     </style>
 </head>
 <body class="font-body antialiased min-h-screen flex flex-col">
@@ -127,14 +238,18 @@
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="navigate('home')">
                     
-                    <!-- PUT YOUR SERVER LOGO URL HERE IN THE src="" ATTRIBUTE -->
-                    <!-- <img src="YOUR_LOGO_URL_HERE.png" alt="TFNE Logo" class="w-10 h-10 rounded-full border border-gray-600"> -->
+                    <!-- ═══════════════════════════════════════════════════════════ -->
+                    <!-- SERVER LOGO — replace this div with an <img> tag           -->
+                    <!-- Recommended size: 40×40px (circular)                       -->
+                    <!-- Example:                                                    -->
+                    <!--   <img src="YOUR_LOGO_URL_HERE.png"                        -->
+                    <!--        alt="TFNE Logo"                                     -->
+                    <!--        class="w-10 h-10 rounded-full border border-gray-600 -->
+                    <!--               shadow-[0_0_10px_rgba(255,232,31,0.25)]">   -->
+                    <!-- ═══════════════════════════════════════════════════════════ -->
                     
-                    <!-- Fallback CSS Logo if you don't have an image yet -->
-                    <div class="w-10 h-10 bg-gray-900 rounded-full border border-gray-600 flex items-center justify-center text-starwars font-scifi font-bold shadow-[0_0_10px_rgba(255,232,31,0.2)]">
-                        TFNE
-                    </div>
-                    <span class="font-scifi font-bold text-xl tracking-wider text-white hidden sm:block">TALES FROM A NEW ERA <span class="text-xs text-red-500 ml-1">18+</span></span>
+                    <span class="font-scifi font-bold text-xl tracking-wider text-white hidden sm:block">TALES FROM A NEW ERA <span class="text-xs text-red-500 ml-1 pulse-border border border-red-700 px-1 rounded">18+</span></span>
+                    <span class="font-scifi font-bold text-base tracking-wider text-white sm:hidden">TFNE <span class="text-xs text-red-500 ml-1">18+</span></span>
                 </div>
                 
                 <!-- Desktop Menu -->
@@ -181,30 +296,34 @@
         <!-- ==================== HOME PAGE ==================== -->
         <div id="page-home" class="page-section w-full">
             <!-- Hero Banner -->
-            
-            <!-- PUT YOUR HERO BANNER IMAGE URL IN THE URL BELOW. REPLACE THE placeholder.com LINK -->
-            <div class="relative w-full h-[70vh] flex items-center justify-center overflow-hidden border-b border-gray-800 bg-[url('https://via.placeholder.com/1920x1080/050505/111111?text=Cold+War+Teaser+Image')] bg-cover bg-center">
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <!-- HERO BANNER IMAGE — replace the bg-[url('...')] value below        -->
+            <!-- Recommended size: 1920×1080px (16:9)                               -->
+            <!-- Replace: bg-[url('YOUR_BANNER_IMAGE_URL_HERE')]                    -->
+            <!-- ═══════════════════════════════════════════════════════════════════ -->
+            <div class="relative w-full h-[75vh] flex items-center justify-center overflow-hidden border-b border-gray-800/60 bg-[url('https://via.placeholder.com/1920x1080/050505/111111?text=Cold+War+Teaser+Image')] bg-cover bg-center">
                 
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-black z-10"></div>
-                <!-- Background overlay effect -->
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/30 via-transparent to-transparent z-0"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/55 to-black z-10"></div>
+                <!-- Dual faction glow -->
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_20%_50%,rgba(139,0,0,0.18),transparent)] z-0"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_80%_50%,rgba(0,91,159,0.18),transparent)] z-0"></div>
                 
                 <div class="relative z-20 text-center px-4 max-w-5xl mx-auto mt-10 fade-in">
-                    <div class="inline-block px-4 py-1 border border-red-500/50 bg-red-900/20 text-red-400 font-scifi tracking-[0.2em] text-sm uppercase mb-6 rounded-full backdrop-blur-sm neon-text-red">
-                        Current Year: 17 ABY
+                    <div class="inline-block px-5 py-1.5 border border-red-500/60 bg-red-900/20 text-red-400 font-scifi tracking-[0.25em] text-xs uppercase mb-7 rounded-full backdrop-blur-sm pulse-border">
+                        ⦿ &nbsp; Current Year: 17 ABY &nbsp; ⦿
                     </div>
-                    <h1 class="text-5xl md:text-7xl font-scifi font-black text-white tracking-wider mb-4 uppercase drop-shadow-2xl">
-                        The Galaxy <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-red-600">Holds Its Breath</span>
+                    <h1 class="text-5xl md:text-7xl font-scifi font-black text-white tracking-wider mb-4 uppercase drop-shadow-2xl leading-tight">
+                        The Galaxy <br/><span class="text-shimmer">Holds Its Breath</span>
                     </h1>
                     <p class="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
                         A brutal Cold War ravages the stars. The sluggish New Republic re-arms in desperation, while the meritocratic Galactic Imperium prepares its final strike.
                     </p>
                     <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                         <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
-                        <a href="https://discord.gg/your-invite-link" target="_blank" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(79,70,229,0.6)] flex items-center justify-center gap-3 text-lg">
+                        <a href="https://discord.gg/your-invite-link" target="_blank" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:shadow-[0_0_25px_rgba(79,70,229,0.7)] flex items-center justify-center gap-3 text-lg">
                             <i class="fab fa-discord text-2xl"></i> Join the Server
                         </a>
-                        <button onclick="navigate('timeline')" class="px-8 py-4 bg-transparent border border-gray-500 hover:border-white text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:bg-white/10 text-lg">
+                        <button onclick="navigate('timeline')" class="px-8 py-4 bg-transparent border border-gray-500/70 hover:border-starwars text-white rounded font-scifi font-bold tracking-widest transition-all duration-300 hover:bg-starwars/10 hover:text-starwars text-lg">
                             Explore Timeline
                         </button>
                     </div>
@@ -233,25 +352,25 @@
                     </div>
                     
                     <!-- Quick Links Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div onclick="navigate('timeline')" class="bg-gray-900/60 border border-gray-700 p-6 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-gray-800 transition-all group backdrop-blur-sm">
-                            <i class="fas fa-history text-3xl text-blue-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div onclick="navigate('timeline')" class="quick-link bg-gray-900/50 border border-gray-700/80 p-6 rounded-xl cursor-pointer hover:border-blue-500 hover:bg-blue-950/20 hover:shadow-[0_0_20px_rgba(0,91,159,0.2)] group backdrop-blur-sm">
+                            <i class="fas fa-history text-3xl text-blue-400 mb-4 group-hover:scale-110 transition-transform block"></i>
                             <h3 class="text-xl font-scifi font-bold text-white mb-2">Full Timeline</h3>
                             <p class="text-gray-400 text-sm">Read the detailed history from the Battle of Endor to the present day.</p>
                         </div>
-                        <div onclick="navigate('factions')" class="bg-gray-900/60 border border-gray-700 p-6 rounded-lg cursor-pointer hover:border-red-500 hover:bg-gray-800 transition-all group backdrop-blur-sm">
-                            <i class="fas fa-flag text-3xl text-red-500 mb-4 group-hover:scale-110 transition-transform"></i>
+                        <div onclick="navigate('factions')" class="quick-link bg-gray-900/50 border border-gray-700/80 p-6 rounded-xl cursor-pointer hover:border-red-500 hover:bg-red-950/20 hover:shadow-[0_0_20px_rgba(139,0,0,0.2)] group backdrop-blur-sm">
+                            <i class="fas fa-flag text-3xl text-red-500 mb-4 group-hover:scale-110 transition-transform block"></i>
                             <h3 class="text-xl font-scifi font-bold text-white mb-2">Factions</h3>
                             <p class="text-gray-400 text-sm">Learn about the New Republic, Galactic Imperium, Jedi, and Templars.</p>
                         </div>
-                        <div onclick="navigate('rules')" class="bg-gray-900/60 border border-gray-700 p-6 rounded-lg cursor-pointer hover:border-purple-500 hover:bg-gray-800 transition-all group backdrop-blur-sm">
-                            <i class="fas fa-book-journal-whills text-3xl text-purple-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                        <div onclick="navigate('rules')" class="quick-link bg-gray-900/50 border border-gray-700/80 p-6 rounded-xl cursor-pointer hover:border-purple-500 hover:bg-purple-950/20 hover:shadow-[0_0_20px_rgba(128,0,128,0.2)] group backdrop-blur-sm">
+                            <i class="fas fa-book-journal-whills text-3xl text-purple-400 mb-4 group-hover:scale-110 transition-transform block"></i>
                             <h3 class="text-xl font-scifi font-bold text-white mb-2">Server Rules</h3>
                             <p class="text-gray-400 text-sm">Review our general rules, roleplay systems (PTK/RTK), and mature content guidelines.</p>
                         </div>
                         <!-- PUT YOUR DISCORD TICKET LINK OR CHANNEL LINK IN THE href="" -->
-                        <a href="https://discord.gg/your-invite-link" target="_blank" class="bg-gray-900/60 border border-gray-700 p-6 rounded-lg hover:border-green-500 hover:bg-gray-800 transition-all group backdrop-blur-sm block">
-                            <i class="fas fa-id-card text-3xl text-green-400 mb-4 group-hover:scale-110 transition-transform"></i>
+                        <a href="https://discord.gg/your-invite-link" target="_blank" class="quick-link bg-gray-900/50 border border-gray-700/80 p-6 rounded-xl hover:border-green-500 hover:bg-green-950/20 hover:shadow-[0_0_20px_rgba(0,160,80,0.2)] group backdrop-blur-sm block">
+                            <i class="fas fa-id-card text-3xl text-green-400 mb-4 group-hover:scale-110 transition-transform block"></i>
                             <h3 class="text-xl font-scifi font-bold text-white mb-2">Verification (18+)</h3>
                             <p class="text-gray-400 text-sm">Must be 18+ to join. Strict verification process required to access the server.</p>
                         </a>
@@ -361,91 +480,197 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 
                 <!-- Galactic Imperium -->
-                <div class="bg-gradient-to-b from-red-950/40 to-black border border-red-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(139,0,0,0.2)] flex flex-col fade-in">
-                    <!-- PUT YOUR IMPERIUM IMAGE URL HERE IN bg-[url('...')] -->
-                    <div class="h-48 bg-[url('https://via.placeholder.com/800x400/220000/ff0000?text=Imperial+Fleet')] bg-cover bg-center border-b border-red-900 relative">
-                        <div class="absolute inset-0 bg-black/50"></div>
+                <div class="faction-card imperial bg-gradient-to-b from-red-950/50 to-black border border-red-900/70 rounded-xl overflow-hidden shadow-[0_0_25px_rgba(139,0,0,0.2)] flex flex-col fade-in">
+                    
+                    <!-- ═══════════════════════════════════════════════════════════════════ -->
+                    <!-- IMPERIUM BANNER IMAGE                                               -->
+                    <!-- Recommended size: 800×400px (displayed at ~100% wide × 192px tall) -->
+                    <!-- Replace bg-[url('...')] with: bg-[url('YOUR_IMPERIUM_IMAGE_URL')] -->
+                    <!-- ═══════════════════════════════════════════════════════════════════ -->
+                    <div class="faction-banner h-48 bg-[url('https://via.placeholder.com/800x400/220000/ff0000?text=Imperial+Fleet')] bg-cover bg-center border-b border-red-900/60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="placeholder-overlay">
+                            <i class="fas fa-image"></i>
+                            <span>Imperium banner · 800 × 400 px</span>
+                        </div>
                         <div class="absolute bottom-4 left-4 z-10 flex items-center gap-3">
-                            <!-- PUT YOUR IMPERIUM LOGO IMAGE URL HERE OR KEEP ICON -->
-                            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center border border-red-600 shadow-[0_0_10px_rgba(255,0,0,0.5)]">
-                                <i class="fas fa-empire text-red-500 text-2xl"></i>
+
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <!-- IMPERIUM LOGO                                           -->
+                            <!-- Recommended size: 48×48px (circular)                   -->
+                            <!-- Replace the div below with:                             -->
+                            <!--   <img src="YOUR_IMPERIUM_LOGO_URL"                    -->
+                            <!--        alt="Galactic Imperium"                          -->
+                            <!--        class="w-12 h-12 rounded-full border             -->
+                            <!--               border-red-600 object-cover               -->
+                            <!--               shadow-[0_0_12px_rgba(255,0,0,0.6)]">   -->
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <img src="images/1000006995-removebg-preview.png"
+                            alt="Galactic Imperium"
+                            div class="logo-placeholder w-12 h-12 bg-black/80 rounded-full border border-red-600 shadow-[0_0_12px_rgba(255,0,0,0.5)] text-red-400">
+                                <i class="fas fa-empire text-xl"></i>
+                                <span style="font-size:8px;opacity:.5;">48×48</span>
                             </div>
-                            <h2 class="text-3xl font-scifi font-bold text-white uppercase tracking-wider neon-text-red">Galactic Imperium</h2>
+
+                            <h2 class="text-3xl font-scifi font-bold text-white uppercase tracking-wider neon-text-red drop-shadow-lg">Galactic Imperium</h2>
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <div class="mb-4">
-                            <span class="text-xs uppercase tracking-widest text-red-500 font-bold border border-red-900 px-2 py-1 rounded bg-red-900/20">Capital: Bastion</span>
-                            <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-2 py-1 rounded bg-gray-800/50 ml-2 mt-2 sm:mt-0 inline-block">Leader: Emperor Draxus Thorne</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs uppercase tracking-widest text-red-400 font-bold border border-red-900 px-3 py-1 rounded-full bg-red-900/20">Capital: Bastion</span>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-3 py-1 rounded-full bg-gray-800/40">Emperor: Draxus Thorne</span>
                         </div>
-                        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">
                             A reborn, highly efficient autocracy built on the ashes of Palpatine's Empire. Emperor Thorne has eradicated the nepotism and xenophobia of the past, creating a meritocracy. Aliens serve in the Army and Navy, and automation feeds an endless war machine.
                         </p>
-                        <h4 class="font-scifi font-bold text-white border-b border-gray-700 pb-1 mb-2">Military Structure</h4>
-                        <ul class="text-sm text-gray-400 space-y-2 mb-6">
-                            <li><i class="fas fa-chevron-right text-red-500 text-xs mr-2"></i> <strong>Imperial Navy:</strong> Integrated, massive, heavily automated.</li>
-                            <li><i class="fas fa-chevron-right text-red-500 text-xs mr-2"></i> <strong>Stormtrooper Corps:</strong> Elite offensive force (Humans & Near-Humans).</li>
-                            <li><i class="fas fa-chevron-right text-red-500 text-xs mr-2"></i> <strong>Imperial Army:</strong> Standard defense force (All species welcome).</li>
+                        <h4 class="font-scifi font-bold text-red-400 border-b border-red-900/50 pb-1 mb-3 text-sm uppercase tracking-widest">Military Structure</h4>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li class="flex items-start gap-2"><i class="fas fa-chevron-right text-red-600 text-xs mt-1 flex-shrink-0"></i><span><strong class="text-gray-200">Imperial Navy:</strong> Integrated, massive, heavily automated.</span></li>
+                            <li class="flex items-start gap-2"><i class="fas fa-chevron-right text-red-600 text-xs mt-1 flex-shrink-0"></i><span><strong class="text-gray-200">Stormtrooper Corps:</strong> Elite offensive force (Humans & Near-Humans).</span></li>
+                            <li class="flex items-start gap-2"><i class="fas fa-chevron-right text-red-600 text-xs mt-1 flex-shrink-0"></i><span><strong class="text-gray-200">Imperial Army:</strong> Standard defense force (All species welcome).</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- New Republic -->
-                <div class="bg-gradient-to-b from-blue-950/40 to-black border border-blue-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,91,159,0.2)] flex flex-col fade-in" style="animation-delay: 0.1s;">
-                    <!-- PUT YOUR NEW REPUBLIC IMAGE URL HERE IN bg-[url('...')] -->
-                    <div class="h-48 bg-[url('https://via.placeholder.com/800x400/001122/0088ff?text=Republic+Senate')] bg-cover bg-center border-b border-blue-900 relative">
-                        <div class="absolute inset-0 bg-black/50"></div>
+                <div class="faction-card republic bg-gradient-to-b from-blue-950/50 to-black border border-blue-900/70 rounded-xl overflow-hidden shadow-[0_0_25px_rgba(0,91,159,0.2)] flex flex-col fade-in" style="animation-delay: 0.1s;">
+
+                    <!-- ══════════════════════════════════════════════════════════════════ -->
+                    <!-- NEW REPUBLIC BANNER IMAGE                                          -->
+                    <!-- Recommended size: 800×400px (displayed at ~100% wide × 192px tall)-->
+                    <!-- Replace bg-[url('...')] with: bg-[url('YOUR_REPUBLIC_IMAGE_URL')]  -->
+                    <!-- ══════════════════════════════════════════════════════════════════ -->
+                    <div class="faction-banner h-48 bg-[url('https://via.placeholder.com/800x400/001122/0088ff?text=Republic+Senate')] bg-cover bg-center border-b border-blue-900/60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="placeholder-overlay">
+                            <i class="fas fa-image"></i>
+                            <span>Republic banner · 800 × 400 px</span>
+                        </div>
                         <div class="absolute bottom-4 left-4 z-10 flex items-center gap-3">
-                            <!-- PUT YOUR NEW REPUBLIC LOGO IMAGE URL HERE OR KEEP ICON -->
-                            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center border border-blue-600 shadow-[0_0_10px_rgba(0,100,255,0.5)]">
-                                <i class="fas fa-rebel text-blue-500 text-2xl"></i>
+
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <!-- NEW REPUBLIC LOGO                                       -->
+                            <!-- Recommended size: 48×48px (circular)                   -->
+                            <!-- Replace the div below with:                             -->
+                            <!--   <img src="YOUR_REPUBLIC_LOGO_URL"                    -->
+                            <!--        alt="New Republic"                               -->
+                            <!--        class="w-12 h-12 rounded-full border             -->
+                            <!--               border-blue-600 object-cover              -->
+                            <!--               shadow-[0_0_12px_rgba(0,100,255,0.6)]"> -->
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <img src="images/Galactic_Union-1.webp" 
+                            alt="New Republic"
+                            div class= "w-12 h-12 bg-black/80 rounded-full border border-blue-600 shadow-[0_0_12px_rgba(0,100,255,0.5)] text-blue-400">
+                                <i class="fas fa-rebel text-xl"></i>
+                                <span style="font-size:8px;opacity:.5;">48×48</span>
                             </div>
-                            <h2 class="text-3xl font-scifi font-bold text-white uppercase tracking-wider neon-text-blue">New Republic</h2>
+
+                            <h2 class="text-3xl font-scifi font-bold text-white uppercase tracking-wider neon-text-blue drop-shadow-lg">New Republic</h2>
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <div class="mb-4">
-                            <span class="text-xs uppercase tracking-widest text-blue-500 font-bold border border-blue-900 px-2 py-1 rounded bg-blue-900/20">Capital: Chandrila</span>
-                            <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-2 py-1 rounded bg-gray-800/50 ml-2 mt-2 sm:mt-0 inline-block">Gov: Galactic Senate</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs uppercase tracking-widest text-blue-400 font-bold border border-blue-900 px-3 py-1 rounded-full bg-blue-900/20">Capital: Chandrila</span>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-3 py-1 rounded-full bg-gray-800/40">Gov: Galactic Senate</span>
                         </div>
-                        <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">
                             The legitimate democratic government of the galaxy. Though vast, it is plagued by bureaucratic slowness, internal corruption from integrated Imperial officials, and military thinness. Jolted awake by the death of Luke Skywalker, they are rapidly militarizing.
                         </p>
-                        <h4 class="font-scifi font-bold text-white border-b border-gray-700 pb-1 mb-2">Current State</h4>
-                        <ul class="text-sm text-gray-400 space-y-2 mb-6">
-                            <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Military:</strong> Rapidly expanding shipyards, high focus on starfighters.</li>
-                            <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Politics:</strong> Divided senate, struggling to manage outer rim security.</li>
-                            <li><i class="fas fa-chevron-right text-blue-500 text-xs mr-2"></i> <strong>Perception:</strong> Viewed by some as weak, but possesses vast industrial might.</li>
+                        <h4 class="font-scifi font-bold text-blue-400 border-b border-blue-900/50 pb-1 mb-3 text-sm uppercase tracking-widest">Current State</h4>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li class="flex items-start gap-2"><i class="fas fa-chevron-right text-blue-600 text-xs mt-1 flex-shrink-0"></i><span><strong class="text-gray-200">Military:</strong> Rapidly expanding shipyards, high focus on starfighters.</span></li>
+                            <li class="flex items-start gap-2"><i class="fas fa-chevron-right text-blue-600 text-xs mt-1 flex-shrink-0"></i><span><strong class="text-gray-200">Politics:</strong> Divided senate, struggling to manage outer rim security.</span></li>
+                            <li class="flex items-start gap-2"><i class="fas fa-chevron-right text-blue-600 text-xs mt-1 flex-shrink-0"></i><span><strong class="text-gray-200">Perception:</strong> Viewed by some as weak, but possesses vast industrial might.</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Order of the Imperial Templars -->
-                <div class="bg-gradient-to-b from-purple-950/40 to-black border border-purple-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(128,0,128,0.2)] flex flex-col fade-in" style="animation-delay: 0.2s;">
-                    <div class="p-6 flex-grow">
-                        <div class="flex items-center gap-3 mb-4">
-                            <!-- TEMPLARS LOGO HERE -->
-                            <i class="fas fa-khanda text-purple-500 text-3xl"></i>
-                            <h3 class="text-2xl font-scifi font-bold text-white uppercase">Imperial Templars</h3>
+                <div class="faction-card templars bg-gradient-to-b from-purple-950/50 to-black border border-purple-900/70 rounded-xl overflow-hidden shadow-[0_0_25px_rgba(128,0,128,0.2)] flex flex-col fade-in" style="animation-delay: 0.2s;">
+
+                    <!-- ══════════════════════════════════════════════════════════════════ -->
+                    <!-- IMPERIAL TEMPLARS BANNER IMAGE                                     -->
+                    <!-- Recommended size: 800×400px (displayed at ~100% wide × 192px tall)-->
+                    <!-- Replace bg-[url('...')] with: bg-[url('YOUR_TEMPLARS_IMAGE_URL')]  -->
+                    <!-- ══════════════════════════════════════════════════════════════════ -->
+                    <div class="faction-banner h-48 bg-[url('https://via.placeholder.com/800x400/1a001a/aa00ff?text=Templar+Order')] bg-cover bg-center border-b border-purple-900/60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="placeholder-overlay">
+                            <i class="fas fa-image"></i>
+                            <span>Templars banner · 800 × 400 px</span>
                         </div>
-                        <span class="text-xs uppercase tracking-widest text-purple-400 font-bold border border-purple-900 px-2 py-1 rounded bg-purple-900/20 mb-4 inline-block">Base: Yavin 4</span>
+                        <div class="absolute bottom-4 left-4 z-10 flex items-center gap-3">
+
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <!-- IMPERIAL TEMPLARS LOGO                                  -->
+                            <!-- Recommended size: 48×48px (circular)                   -->
+                            <!-- Replace the div below with:                             -->
+                            <!--   <img src="YOUR_TEMPLARS_LOGO_URL"                    -->
+                            <!--        alt="Imperial Templars"                          -->
+                            <!--        class="w-12 h-12 rounded-full border             -->
+                            <!--               border-purple-600 object-cover            -->
+                            <!--               shadow-[0_0_12px_rgba(160,0,255,0.6)]"> -->
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <div class="logo-placeholder w-12 h-12 bg-black/80 rounded-full border border-purple-600 shadow-[0_0_12px_rgba(160,0,255,0.5)] text-purple-400">
+                                <i class="fas fa-khanda text-xl"></i>
+                                <span style="font-size:8px;opacity:.5;">48×48</span>
+                            </div>
+
+                            <h2 class="text-2xl font-scifi font-bold text-white uppercase tracking-wider drop-shadow-lg" style="text-shadow:0 0 12px rgba(160,0,255,0.7);">Imperial Templars</h2>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs uppercase tracking-widest text-purple-400 font-bold border border-purple-900 px-3 py-1 rounded-full bg-purple-900/20">Base: Yavin 4</span>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-3 py-1 rounded-full bg-gray-800/40">Allegiance: Emperor Thorne</span>
+                        </div>
                         <p class="text-gray-300 text-sm leading-relaxed">
-                            A dark-side Force order acting as the Imperium's elite enforcers and peacekeepers. Formed by a mercenary trained by a fallen Order 66 survivor. They occupy the former Jedi Praxeum and recruit inquisitors, dark jedi, and darkside cultists to serve the Emperor's will.
+                            A dark-side Force order acting as the Imperium's elite enforcers and peacekeepers. Formed by a mercenary trained by a fallen Order 66 survivor. They occupy the former Jedi Praxeum on Yavin 4, recruiting inquisitors, dark Jedi, and dark-side cultists to serve the Emperor's will.
                         </p>
                     </div>
                 </div>
 
                 <!-- New Jedi Order -->
-                <div class="bg-gradient-to-b from-green-950/40 to-black border border-green-900 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(0,128,0,0.2)] flex flex-col fade-in" style="animation-delay: 0.3s;">
-                    <div class="p-6 flex-grow">
-                        <div class="flex items-center gap-3 mb-4">
-                            <!-- JEDI LOGO HERE -->
-                            <i class="fas fa-jedi text-green-500 text-3xl"></i>
-                            <h3 class="text-2xl font-scifi font-bold text-white uppercase">New Jedi Order</h3>
+                <div class="faction-card jedi bg-gradient-to-b from-green-950/50 to-black border border-green-900/70 rounded-xl overflow-hidden shadow-[0_0_25px_rgba(0,128,0,0.2)] flex flex-col fade-in" style="animation-delay: 0.3s;">
+
+                    <!-- ══════════════════════════════════════════════════════════════════ -->
+                    <!-- NEW JEDI ORDER BANNER IMAGE                                        -->
+                    <!-- Recommended size: 800×400px (displayed at ~100% wide × 192px tall)-->
+                    <!-- Replace bg-[url('...')] with: bg-[url('YOUR_JEDI_IMAGE_URL')]      -->
+                    <!-- ══════════════════════════════════════════════════════════════════ -->
+                    <div class="faction-banner h-48 bg-[url('https://via.placeholder.com/800x400/001a00/00cc44?text=New+Jedi+Order')] bg-cover bg-center border-b border-green-900/60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="placeholder-overlay">
+                            <i class="fas fa-image"></i>
+                            <span>Jedi Order banner · 800 × 400 px</span>
                         </div>
-                        <span class="text-xs uppercase tracking-widest text-green-400 font-bold border border-green-900 px-2 py-1 rounded bg-green-900/20 mb-4 inline-block">Base: Devaron</span>
+                        <div class="absolute bottom-4 left-4 z-10 flex items-center gap-3">
+
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <!-- NEW JEDI ORDER LOGO                                     -->
+                            <!-- Recommended size: 48×48px (circular)                   -->
+                            <!-- Replace the div below with:                             -->
+                            <!--   <img src="YOUR_JEDI_LOGO_URL"                        -->
+                            <!--        alt="New Jedi Order"                             -->
+                            <!--        class="w-12 h-12 rounded-full border             -->
+                            <!--               border-green-600 object-cover             -->
+                            <!--               shadow-[0_0_12px_rgba(0,200,80,0.6)]">  -->
+                            <!-- ═══════════════════════════════════════════════════════ -->
+                            <div class=" w-12 h-12 bg-black/80 rounded-full border border-green-600 shadow-[0_0_12px_rgba(0,200,80,0.5)] text-green-400">
+                                <i class="fas fa-jedi text-xl"></i>
+                                <span style="font-size:8px;opacity:.5;">48×48</span>
+                            </div>
+
+                            <h2 class="text-2xl font-scifi font-bold text-white uppercase tracking-wider drop-shadow-lg" style="text-shadow:0 0 12px rgba(0,200,80,0.7);">New Jedi Order</h2>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs uppercase tracking-widest text-green-400 font-bold border border-green-900 px-3 py-1 rounded-full bg-green-900/20">Base: Devaron</span>
+                            <span class="text-xs uppercase tracking-widest text-gray-400 font-bold border border-gray-700 px-3 py-1 rounded-full bg-gray-800/40">Grandmaster: Vacant</span>
+                        </div>
                         <p class="text-gray-300 text-sm leading-relaxed">
-                            Severely wounded by the execution of Grandmaster Luke Skywalker, the survivors retreated to Devaron. Built on Luke's reforms—allowing attachments, rejecting dogma, and welcoming diverse light-side sects—the Order now operates as an independent vigilante force seeking to honor Luke's sacrifice.
+                            Severely wounded by the public execution of Grandmaster Luke Skywalker, the survivors retreated to Devaron. Built on Luke's reforms—allowing attachments, rejecting dogma, and welcoming diverse light-side sects—the Order now operates as an independent vigilante force seeking to honor Luke's sacrifice.
                         </p>
                     </div>
                 </div>
@@ -483,7 +708,7 @@
                     <h2 class="text-3xl font-scifi font-bold text-starwars border-b border-gray-700 pb-2 uppercase tracking-widest"><i class="fas fa-gavel mr-3"></i>General Rules</h2>
                     
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,91,159,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Discrimination Policy</h3>
                         <p class="text-sm text-gray-300 mb-2">Discrimination in any form (homophobia, racism, sexism, ableism, etc.) is strictly prohibited. We are dedicated to creating a welcoming, inclusive environment.</p>
                         <p class="text-xs text-gray-400 italic mb-2">Note: While we have <span class="text-indigo-400 font-mono">╰┈➤┆dark-humor</span> for memes and offensive jokes, there are still lines that are not to be crossed.</p>
@@ -491,7 +716,7 @@
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,91,159,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Respect Boundaries & Consent</h3>
                         <p class="text-sm text-gray-300 mb-2">Listening to and respecting others' boundaries is essential. If someone asks you to stop a certain behavior, you must heed their words.</p>
                         <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2 mb-2"><strong>Consequences:</strong> Disciplinary action including warnings, temp, or permanent bans.</p>
@@ -499,7 +724,7 @@
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,91,159,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Respect Staff Authority</h3>
                         <p class="text-sm text-gray-300 mb-2">Listen to and respect staff members. They are here to ensure community well-being and enforce rules fairly.</p>
                         <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2 mb-2"><strong>Consequences:</strong> Disrespect leads to warnings, temporary timeouts, or worse.</p>
@@ -507,21 +732,21 @@
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,91,159,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Minimize Drama</h3>
                         <p class="text-sm text-gray-300 mb-2">Drama leading to disruptive arguments detracts from the atmosphere. Prevent conflicts from escalating into full-blown disputes.</p>
                         <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings will be issued to involved parties. Persistent drama leads to removal from the server.</p>
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,91,159,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">No Advertising or Promotion</h3>
                         <p class="text-sm text-gray-300 mb-2">Advertising oneself, other servers, products, or services is not allowed (including unsolicited DMs). To partner, ask <span class="text-indigo-400 font-bold">@Jacob1173</span>.</p>
                         <p class="text-sm text-gray-400 border-l-2 border-red-500 pl-2"><strong>Consequences:</strong> Warnings. Continued promo results in temp/perm bans.</p>
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-blue-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(0,91,159,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Protect Personal Information & Accusations</h3>
                         <p class="text-sm text-gray-300 mb-3"><strong>Doxxing:</strong> Posting/seeking real names, addresses, or any IRL info without consent results in IMMEDIATE action.</p>
                         <p class="text-sm text-gray-300 mb-2"><strong>Accusations:</strong> Accusing others requires strong, undeniable evidence (screenshots, logs). Speculation/hearsay is not accepted.</p>
@@ -534,7 +759,7 @@
                     <h2 class="text-3xl font-scifi font-bold text-purple-400 border-b border-gray-700 pb-2 uppercase tracking-widest"><i class="fas fa-dice-d20 mr-3"></i>Roleplay Rules</h2>
                     
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-purple-500 hover:shadow-[0_0_15px_rgba(128,0,128,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">PTK and RTK Systems</h3>
                         <div class="space-y-2 text-sm text-gray-300">
                             <p><strong class="text-purple-400">Permission to Kill (PTK):</strong> Before taking a character’s life, you must obtain explicit permission from the player controlling them.</p>
@@ -544,7 +769,7 @@
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-purple-500 hover:shadow-[0_0_15px_rgba(128,0,128,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">OP Roleplaying is Prohibited</h3>
                         <ul class="list-disc pl-5 space-y-1 text-sm text-gray-300">
                             <li><strong>Auto-Hitting:</strong> Hitting/injuring someone without their consent to dictate the outcome.</li>
@@ -555,7 +780,7 @@
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-purple-500 hover:shadow-[0_0_15px_rgba(128,0,128,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Roleplay Content Guidelines</h3>
                         <p class="text-sm text-gray-300 mb-2"><strong>Minimum Effort:</strong> Three Sentence Minimum per post. One-liners are discouraged and consistent use results in staff intervention.</p>
                         <p class="text-sm text-gray-300 mb-2"><strong>AI Content:</strong> Strictly Prohibited. All RP posts, sheets, and narrative elements must be handwritten. Violations lead to warnings or removal.</p>
@@ -564,7 +789,7 @@
                     </div>
 
                     <!-- Rule Item -->
-                    <div class="bg-gray-900/60 border border-gray-700 rounded-lg p-5 hover:border-purple-500 transition-colors">
+                    <div class="rule-card bg-gray-900/50 border border-gray-700/80 rounded-xl p-5 hover:border-purple-500 hover:shadow-[0_0_15px_rgba(128,0,128,0.15)]">
                         <h3 class="text-xl font-bold text-white mb-2">Combat (CRP) & Erotic (ERP) Roleplay</h3>
                         <div class="space-y-3 text-sm text-gray-300">
                             <p><strong>CRP:</strong> Highly encouraged. Plan scenes fairly, avoid godmodding, and respect combat outcomes.</p>
@@ -593,14 +818,26 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 bg-black py-8 mt-auto z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+    <div class="section-divider"></div>
+    <footer class="border-t border-gray-800/60 bg-black/90 py-10 mt-auto z-10 relative backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-4">
             
-            <!-- PUT YOUR LOGO HERE IN THE FOOTER TOO IF YOU WISH -->
-            <!-- <img src="YOUR_LOGO_URL_HERE.png" alt="Logo" class="w-8 h-8 opacity-50 mb-3"> -->
-            
-            <p class="text-gray-500 font-scifi uppercase tracking-widest text-sm mb-2">Star Wars: Tales from a New Era © 17 ABY</p>
-            <p class="text-gray-600 text-xs max-w-2xl mx-auto">This is a fan-made roleplay community. Star Wars is the property of Lucasfilm Ltd. and The Walt Disney Company. This site is for non-commercial entertainment purposes only. <span class="text-red-500 font-bold ml-2">18+ WARNING: Mature Themes</span></p>
+            <!-- ════════════════════════════════════════════════════ -->
+            <!-- FOOTER LOGO — optional, uncomment and replace src="" -->
+            <!-- Recommended size: 32×32px                           -->
+            <!--   <img src="YOUR_LOGO_URL_HERE.png"                 -->
+            <!--        alt="TFNE Logo"                               -->
+            <!--        class="w-8 h-8 opacity-50">                  -->
+            <!-- ════════════════════════════════════════════════════ -->
+
+            <div class="flex items-center gap-2">
+                <div class="h-px w-12 bg-gradient-to-r from-transparent to-red-800/50"></div>
+                <span class="text-starwars font-scifi text-xs tracking-[0.3em] uppercase opacity-60">⦿</span>
+                <div class="h-px w-12 bg-gradient-to-l from-transparent to-blue-800/50"></div>
+            </div>
+            <p class="text-gray-500 font-scifi uppercase tracking-widest text-sm">Star Wars: Tales from a New Era &copy; 17 ABY</p>
+            <p class="text-gray-600 text-xs max-w-2xl mx-auto leading-relaxed">This is a fan-made roleplay community. Star Wars is the property of Lucasfilm Ltd. and The Walt Disney Company. This site is for non-commercial entertainment purposes only.</p>
+            <span class="text-red-500/80 font-bold text-xs border border-red-900/50 px-3 py-1 rounded-full bg-red-950/30 pulse-border">⚠ 18+ ONLY — MATURE THEMES</span>
         </div>
     </footer>
 
