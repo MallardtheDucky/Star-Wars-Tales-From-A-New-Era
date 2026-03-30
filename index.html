@@ -221,6 +221,36 @@
             transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
         }
         .quick-link:hover { transform: translateY(-3px); }
+
+        /* ── HoloNews ── */
+        @keyframes hnn-ticker {
+            0%   { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .hnn-ticker-text { animation: hnn-ticker 40s linear infinite; white-space: nowrap; }
+
+        @keyframes hnn-blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }
+        .hnn-live { animation: hnn-blink 1.2s step-start infinite; }
+
+        .hnn-card {
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+        .hnn-card:hover { transform: translateY(-3px); }
+        .hnn-card.imperial:hover  { box-shadow: 0 0 30px rgba(139,0,0,0.3); }
+        .hnn-card.republic:hover  { box-shadow: 0 0 30px rgba(0,91,159,0.3); }
+        .hnn-card.jedi:hover      { box-shadow: 0 0 30px rgba(0,160,80,0.3); }
+        .hnn-card.templars:hover  { box-shadow: 0 0 30px rgba(128,0,128,0.3); }
+        .hnn-card.neutral:hover   { box-shadow: 0 0 30px rgba(255,232,31,0.2); }
+
+        .filter-btn.active-imperial { border-color: #8b0000; color: #f87171; background: rgba(139,0,0,0.15); }
+        .filter-btn.active-republic { border-color: #005b9f; color: #60a5fa; background: rgba(0,91,159,0.15); }
+        .filter-btn.active-jedi     { border-color: #2e8b57; color: #4ade80; background: rgba(0,160,80,0.15); }
+        .filter-btn.active-templars { border-color: #6b21a8; color: #c084fc; background: rgba(128,0,128,0.15); }
+        .filter-btn.active-neutral  { border-color: #5b5b00; color: #fde047; background: rgba(255,232,31,0.1); }
+        .filter-btn.active-all      { border-color: #4b5563; color: #ffffff; background: rgba(255,255,255,0.08); }
     </style>
 </head>
 <body class="font-body antialiased min-h-screen flex flex-col">
@@ -246,6 +276,7 @@
                         <button onclick="navigate('timeline')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Timeline</button>
                         <button onclick="navigate('factions')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Factions</button>
                         <button onclick="navigate('rules')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200">Rules</button>
+                        <button onclick="navigate('holonews')" class="nav-btn text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium uppercase tracking-widest transition-colors duration-200 flex items-center gap-1"><i class="fas fa-satellite-dish text-yellow-400 text-xs"></i> HoloNews</button>
                         <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
                         <a href="https://discord.gg/XSkmyMFQ" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(79,70,229,0.5)] flex items-center gap-2">
                             <i class="fab fa-discord"></i> Join Discord
@@ -269,6 +300,7 @@
                 <button onclick="navigate('timeline'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Timeline</button>
                 <button onclick="navigate('factions'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Factions</button>
                 <button onclick="navigate('rules'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest">Rules</button>
+                <button onclick="navigate('holonews'); toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left uppercase tracking-widest flex items-center gap-2"><i class="fas fa-satellite-dish text-yellow-400 text-xs"></i> HoloNews</button>
                 <!-- PUT YOUR DISCORD INVITE LINK IN THE href="" ATTRIBUTE -->
                 <a href="https://discord.gg/XSkmyMFQ" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white block px-3 py-2 rounded-md text-base font-bold w-full text-center uppercase tracking-widest mt-4">
                     <i class="fab fa-discord"></i> Join Discord
@@ -713,7 +745,83 @@
 
     </main>
 
+    <!-- ==================== HOLONEWS PAGE ==================== -->
+    <div id="page-holonews" class="page-section hidden w-full z-10 relative">
+
+        <!-- ── HNN Masthead ── -->
+        <div class="border-b border-yellow-900/60 bg-black/90 backdrop-blur-md pt-10 pb-0">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mb-5">
+                    <div class="flex items-center gap-4">
+                        <div class="flex flex-col leading-none">
+                            <span class="font-scifi font-black text-4xl md:text-5xl tracking-widest text-starwars neon-text-gold uppercase">HoloNet</span>
+                            <span class="font-scifi font-light text-sm tracking-[0.5em] text-gray-400 uppercase ml-1">News Network</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-1">
+                            <span class="hnn-live text-red-500 font-scifi font-black text-xs tracking-widest border border-red-700 px-2 py-0.5 rounded bg-red-950/30">⬤ LIVE</span>
+                            <span class="text-gray-500 text-xs font-mono">17 ABY</span>
+                        </div>
+                    </div>
+                    <div class="text-right hidden sm:block">
+                        <p class="text-gray-500 font-scifi text-xs uppercase tracking-widest">Galactic Standard Broadcast</p>
+                        <p class="text-gray-600 text-xs font-mono" id="hnn-timestamp">Connecting to HoloNet...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticker tape -->
+            <div class="bg-yellow-900/20 border-t border-yellow-900/40 py-1.5 overflow-hidden flex items-center gap-3">
+                <span class="font-scifi font-bold text-xs text-starwars uppercase tracking-widest px-4 border-r border-yellow-900/60 shrink-0">BREAKING</span>
+                <div class="overflow-hidden flex-1">
+                    <p class="hnn-ticker-text font-scifi text-xs text-gray-300 tracking-wider" id="hnn-ticker">
+                        Cold War tensions rise as Imperial Fleet conducts maneuvers near Republic border &nbsp;⦿&nbsp; New Republic Senate votes to increase military funding by 40% &nbsp;⦿&nbsp; Jedi survivors reported on Devaron, Republic calls for protection &nbsp;⦿&nbsp; Emperor Thorne addresses Imperium on the anniversary of the Yavin Accord &nbsp;⦿&nbsp; Smuggler routes disrupted near Nal Hutta — Hutts blame Imperium
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+            <!-- ── Filter Bar ── -->
+            <div class="flex flex-wrap gap-2 mb-8 fade-in items-center">
+                <span class="text-gray-500 font-scifi text-xs uppercase tracking-widest mr-2 shrink-0">Filter:</span>
+                <button onclick="hnnFilter('all')"      class="filter-btn active-all   font-scifi text-xs uppercase tracking-widest border border-gray-600 px-4 py-1.5 rounded-full transition-all duration-200">All Feeds</button>
+                <button onclick="hnnFilter('imperial')" class="filter-btn font-scifi text-xs uppercase tracking-widest border border-gray-700 text-gray-400 px-4 py-1.5 rounded-full transition-all duration-200 hover:border-red-800 hover:text-red-400"><i class="fas fa-circle text-red-800 mr-1 text-xs"></i>Imperial</button>
+                <button onclick="hnnFilter('republic')" class="filter-btn font-scifi text-xs uppercase tracking-widest border border-gray-700 text-gray-400 px-4 py-1.5 rounded-full transition-all duration-200 hover:border-blue-800 hover:text-blue-400"><i class="fas fa-circle text-blue-800 mr-1 text-xs"></i>Republic</button>
+                <button onclick="hnnFilter('jedi')"     class="filter-btn font-scifi text-xs uppercase tracking-widest border border-gray-700 text-gray-400 px-4 py-1.5 rounded-full transition-all duration-200 hover:border-green-800 hover:text-green-400"><i class="fas fa-circle text-green-800 mr-1 text-xs"></i>Jedi Order</button>
+                <button onclick="hnnFilter('templars')" class="filter-btn font-scifi text-xs uppercase tracking-widest border border-gray-700 text-gray-400 px-4 py-1.5 rounded-full transition-all duration-200 hover:border-purple-800 hover:text-purple-400"><i class="fas fa-circle text-purple-800 mr-1 text-xs"></i>Templars</button>
+                <button onclick="hnnFilter('neutral')"  class="filter-btn font-scifi text-xs uppercase tracking-widest border border-gray-700 text-gray-400 px-4 py-1.5 rounded-full transition-all duration-200 hover:border-yellow-800 hover:text-yellow-400"><i class="fas fa-circle text-yellow-800 mr-1 text-xs"></i>Neutral</button>
+                <button onclick="hnnRefresh()" class="ml-auto font-scifi text-xs uppercase tracking-widest text-gray-500 hover:text-white border border-gray-800 hover:border-gray-600 px-3 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5"><i class="fas fa-sync-alt text-xs" id="hnn-refresh-icon"></i> Refresh</button>
+            </div>
+
+            <!-- ── Feed Status Bar ── -->
+            <div id="hnn-status" class="mb-6 text-center py-3 text-gray-500 font-scifi text-xs uppercase tracking-widest hidden">
+                <i class="fas fa-circle-notch fa-spin mr-2"></i> Tuning into the HoloNet...
+            </div>
+            <div id="hnn-error" class="mb-6 hidden bg-red-950/30 border border-red-900/60 rounded-xl p-4 text-center">
+                <p class="text-red-400 font-scifi text-sm uppercase tracking-widest"><i class="fas fa-exclamation-triangle mr-2"></i>HoloNet signal lost.</p>
+                <p class="text-gray-500 text-xs mt-1">Could not reach the news feed. Check the HOLONEWS_FEED_URL configuration or try refreshing.</p>
+            </div>
+
+            <!-- ── News Grid ── -->
+            <div id="hnn-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Cards injected by JS -->
+            </div>
+
+            <!-- ── Empty State ── -->
+            <div id="hnn-empty" class="hidden text-center py-20">
+                <i class="fas fa-satellite-dish text-5xl text-gray-700 mb-4 block"></i>
+                <p class="text-gray-500 font-scifi uppercase tracking-widest text-sm">No transmissions on this frequency.</p>
+                <p class="text-gray-600 text-xs mt-2">No news articles found for this faction filter.</p>
+            </div>
+
+
+
+        </div>
+    </div>
+
     <!-- Footer -->
+
     <div class="section-divider"></div>
     <footer class="border-t border-gray-800/60 bg-black/90 py-10 mt-auto z-10 relative backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center gap-4">
@@ -729,27 +837,21 @@
         </div>
     </footer>
 
-    <!-- JavaScript for SPA Routing and Interactivity -->
+    <!-- HoloNews Script -->
     <script>
-        // Simple SPA Router
+        // ── Original SPA Router ──
         function navigate(pageId) {
-            // Hide all pages
             const pages = document.querySelectorAll('.page-section');
             pages.forEach(page => {
                 page.classList.add('hidden');
-                page.classList.remove('fade-in'); // Reset animation
+                page.classList.remove('fade-in');
             });
-
-            // Show selected page
             const targetPage = document.getElementById('page-' + pageId);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
-                // Trigger reflow to restart animation
                 void targetPage.offsetWidth;
                 targetPage.classList.add('fade-in');
             }
-
-            // Update nav active states
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => {
                 if (btn.textContent.toLowerCase().includes(pageId) || 
@@ -763,12 +865,9 @@
                     btn.style.textShadow = "none";
                 }
             });
-
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
@@ -776,14 +875,173 @@
 
         document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
 
-        // Initialize active state
         document.addEventListener('DOMContentLoaded', () => {
-            // Set initial active state for home button
             const homeBtns = document.querySelectorAll('.nav-btn');
             if(homeBtns.length > 0) {
                 homeBtns[0].classList.add('text-white');
             }
         });
+        // ═══════════════════════════════════════════════════════
+        //  HOLONEWS CONFIGURATION
+        //  Replace the URL below with the RAW URL of your GitHub
+        //  Gist that your Discord bot writes to.
+        //  Example: https://gist.githubusercontent.com/youruser/abc123/raw/holonews.json
+        //  Leave as empty string "" to show the setup guide.
+        // ═══════════════════════════════════════════════════════
+        const HOLONEWS_FEED_URL = "";
+
+
+
+        // ── Faction styling config ──
+        const HNN_FACTION_CONFIG = {
+            imperial:  { label: "Imperial",    color: "text-red-400",    border: "border-red-900/60",    bg: "from-red-950/30",    badge: "border-red-900 bg-red-900/20 text-red-400",    icon: "fas fa-circle text-red-600" },
+            republic:  { label: "Republic",    color: "text-blue-400",   border: "border-blue-900/60",   bg: "from-blue-950/30",   badge: "border-blue-900 bg-blue-900/20 text-blue-400",   icon: "fas fa-circle text-blue-600" },
+            jedi:      { label: "Jedi Order",  color: "text-green-400",  border: "border-green-900/60",  bg: "from-green-950/30",  badge: "border-green-900 bg-green-900/20 text-green-400",  icon: "fas fa-circle text-green-600" },
+            templars:  { label: "Templars",    color: "text-purple-400", border: "border-purple-900/60", bg: "from-purple-950/30", badge: "border-purple-900 bg-purple-900/20 text-purple-400", icon: "fas fa-circle text-purple-600" },
+            neutral:   { label: "Neutral",     color: "text-yellow-400", border: "border-yellow-900/60", bg: "from-yellow-950/20", badge: "border-yellow-900 bg-yellow-900/10 text-yellow-400", icon: "fas fa-circle text-yellow-700" },
+        };
+
+        let hnnAllArticles = [];
+        let hnnCurrentFilter = 'all';
+
+        function hnnBuildCard(article) {
+            const cfg = HNN_FACTION_CONFIG[article.faction] || HNN_FACTION_CONFIG['neutral'];
+            return `
+                <div class="hnn-card ${article.faction} bg-gradient-to-b ${cfg.bg} to-black border ${cfg.border} rounded-xl p-5 flex flex-col gap-3 fade-in">
+                    <div class="flex items-center justify-between gap-2 flex-wrap">
+                        <span class="text-xs uppercase tracking-widest font-bold border ${cfg.badge} px-3 py-0.5 rounded-full flex items-center gap-1.5">
+                            <i class="${cfg.icon} text-xs"></i>${cfg.label}
+                        </span>
+                        <span class="text-gray-600 font-mono text-xs">17 ABY</span>
+                    </div>
+                    <h3 class="font-scifi font-bold text-white text-lg leading-snug">${article.title}</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed flex-grow">${article.content}</p>
+                    <div class="border-t border-gray-800/60 pt-2 flex items-center justify-between">
+                        <span class="text-gray-600 text-xs font-scifi uppercase tracking-widest"><i class="fas fa-user-circle mr-1"></i>${article.author || 'HNN Correspondent'}</span>
+                        <span class="${cfg.color} text-xs font-scifi uppercase tracking-widest">HNN</span>
+                    </div>
+                </div>`;
+        }
+
+        function hnnRender(articles) {
+            const grid = document.getElementById('hnn-grid');
+            const empty = document.getElementById('hnn-empty');
+            if (!articles || articles.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            empty.classList.add('hidden');
+            grid.innerHTML = articles.map(hnnBuildCard).join('');
+        }
+
+        function hnnFilter(faction) {
+            hnnCurrentFilter = faction;
+
+            // Update filter button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = btn.className
+                    .replace(/active-\w+/g, '')
+                    .replace(/text-\w+-\d+/g, 'text-gray-400')
+                    .replace(/border-\w+-\d+/g, 'border-gray-700')
+                    .replace(/bg-\[.*?\]/g, '');
+            });
+
+            const activeClass = 'active-' + faction;
+            const clickedBtns = document.querySelectorAll('.filter-btn');
+            clickedBtns.forEach(btn => {
+                const btnText = btn.textContent.trim().toLowerCase();
+                const matchMap = { all: 'all feeds', imperial: 'imperial', republic: 'republic', jedi: 'jedi', templars: 'templars', neutral: 'neutral' };
+                if (btnText.includes(matchMap[faction])) {
+                    btn.classList.add(activeClass);
+                    btn.classList.remove('text-gray-400');
+                }
+            });
+
+            const filtered = faction === 'all'
+                ? hnnAllArticles
+                : hnnAllArticles.filter(a => a.faction === faction);
+
+            hnnRender(filtered);
+        }
+
+        async function hnnRefresh() {
+            const icon = document.getElementById('hnn-refresh-icon');
+            icon.classList.add('fa-spin');
+            await hnnLoad();
+            setTimeout(() => icon.classList.remove('fa-spin'), 600);
+        }
+
+        async function hnnLoad() {
+            const status  = document.getElementById('hnn-status');
+            const errorEl = document.getElementById('hnn-error');
+            const grid    = document.getElementById('hnn-grid');
+
+            errorEl.classList.add('hidden');
+
+            // No URL configured — show empty state
+            if (!HOLONEWS_FEED_URL || HOLONEWS_FEED_URL.trim() === '') {
+                hnnAllArticles = [];
+                hnnRender([]);
+                return;
+            }
+
+            // Fetch from configured URL
+            status.classList.remove('hidden');
+            grid.innerHTML = '';
+
+            try {
+                const resp = await fetch(HOLONEWS_FEED_URL, { cache: 'no-cache' });
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                const data = await resp.json();
+                hnnAllArticles = Array.isArray(data) ? data : [];
+                hnnFilter(hnnCurrentFilter);
+                updateTicker(hnnAllArticles);
+            } catch(e) {
+                errorEl.classList.remove('hidden');
+                hnnAllArticles = [];
+                hnnRender([]);
+            } finally {
+                status.classList.add('hidden');
+            }
+        }
+
+        function updateTicker(articles) {
+            if (!articles || articles.length === 0) return;
+            const ticker = document.getElementById('hnn-ticker');
+            ticker.textContent = articles.map(a => a.title).join(' \u00a0\u2295\u00a0 ');
+        }
+
+        function hnnUpdateTimestamp() {
+            const el = document.getElementById('hnn-timestamp');
+            if (el) {
+                const now = new Date();
+                el.textContent = now.toUTCString().replace('GMT', 'GST');
+            }
+        }
+
+        // Initialise when the HoloNews page is opened
+        const _origNavigate = navigate;
+        navigate = function(pageId) {
+            _origNavigate(pageId);
+            if (pageId === 'holonews') {
+                // Move holonews page inside #app-content visual flow
+                const appContent = document.getElementById('app-content');
+                const hnnPage = document.getElementById('page-holonews');
+                if (hnnPage && hnnPage.parentElement !== appContent) {
+                    appContent.appendChild(hnnPage);
+                }
+                hnnPage.classList.remove('hidden');
+                hnnPage.classList.add('fade-in');
+                hnnUpdateTimestamp();
+                if (hnnAllArticles.length === 0) hnnLoad();
+            } else {
+                document.getElementById('page-holonews').classList.add('hidden');
+            }
+        };
+
+        setInterval(hnnUpdateTimestamp, 30000);
     </script>
+
 </body>
 </html>
